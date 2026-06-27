@@ -4,7 +4,7 @@ const experiences = [
     company: "Health Link",
     period: "May 2026 - Present",
     project: "Care Keeper",
-    techStack: ["Python", "PySide6", "Raspberry Pi", "BLE", "Serial UART", "I2C", "REST API"],
+    techStack: ["Python", "PySide6", "Raspberry Pi 5", "BLE", "Serial UART", "I2C", "REST API"],
     summary:
       "Developed a Raspberry Pi healthcare application focused on intuitive UI/UX for patient screening and registration workflows. Integrated hardware peripherals including a Thai ID reader, BP monitor, and BLE SpO₂ sensor, and optimized asynchronous sensor communication using QThread. Built end-to-end API workflows with backend services, with robust error handling and hardware monitoring for Wi-Fi, Bluetooth, and battery status.",
   },

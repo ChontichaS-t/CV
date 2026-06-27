@@ -13,8 +13,8 @@ export default function HomePage() {
       <ScrollEffects />
       <Navbar />
       <Hero />
-      <Highlights />
       <Experience />
+      <Highlights />
       <Projects />
       <Skills />
       <Footer />

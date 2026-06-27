@@ -3,7 +3,7 @@ import Highlights from "../components/Highlights";
 import Hero from "../components/Hero";
 import Experience from "../components/Experience";
 import Navbar from "../components/Navbar";
-import Projects from "../components/Projects";
+import Extracurriculars from "../components/Extracurriculars";
 import ScrollEffects from "../components/ScrollEffects";
 import Skills from "../components/Skills";
 
@@ -15,7 +15,7 @@ export default function HomePage() {
       <Hero />
       <Experience />
       <Highlights />
-      <Projects />
+      <Extracurriculars />
       <Skills />
       <Footer />
     </main>

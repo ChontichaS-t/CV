@@ -4,11 +4,11 @@ import { useState, useEffect, useRef } from "react";
 
 const activities = [
   {
-    title: "ENGIRUN",
+    title: "ENGiRUN69",
     role: "F&B Team Lead",
     description: "Led team coordination and logistics for a large-scale university event.",
     tags: ["Leadership", "Logistics", "Coordination", "Event Management"],
-    images: ["/engi/engi1.jpg", "/engi/engi2.jpg", "/engi/engi3.jpg"],
+    images: ["/engi/engi1.jpg", "/engi/engi2.jpg", "/engi/engi3.jpg", "/engi/engi4.jpg", "/engi/engi5.jpg"],
   },
   {
     title: "Battle of AI",
@@ -34,7 +34,19 @@ const activities = [
       "/congra/congra2.jpg",
       "/congra/congra3.jpg",
       "/congra/congra4.jpg",
-      "/congra/congra5.jpg"
+      "/congra/congra5.jpg",
+      "/congra/congra6.jpg"
+    ],
+  },
+  {
+    title: "i-MAC & i-Tech Sports Events",
+    role: "Core Committee (Logistics)",
+    description: "Planned and coordinated beverage logistics and operations for the i-MAC and i-Tech sports events.",
+    tags: ["Logistics", "Operations", "Event Coordination", "Sports Events"],
+    images: [
+      "/sport/sport1.jpg",
+      "/sport/sport2.jpg",
+      "/sport/sport3.jpg"
     ],
   },
 ];
@@ -48,6 +60,8 @@ interface ImageSliderProps {
 function ImageSlider({ images, title, autoPlay = true }: ImageSliderProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [touchEndX, setTouchEndX] = useState<number | null>(null);
 
   useEffect(() => {
     if (!autoPlay || images.length <= 1 || isHovered) return;
@@ -59,6 +73,32 @@ function ImageSlider({ images, title, autoPlay = true }: ImageSliderProps) {
     return () => clearInterval(interval);
   }, [images.length, autoPlay, isHovered]);
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.targetTouches[0].clientX);
+    setTouchEndX(null);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEndX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX === null || touchEndX === null) return;
+    const diffX = touchStartX - touchEndX;
+    const minSwipeDistance = 50;
+
+    if (Math.abs(diffX) > minSwipeDistance) {
+      if (diffX > 0) {
+        // Swipe left -> Next image
+        setCurrentIndex((prev) => (prev + 1) % images.length);
+      } else {
+        // Swipe right -> Prev image
+        setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+      }
+    }
+    setTouchStartX(null);
+    setTouchEndX(null);
+  };
 
   if (images.length === 0) {
     return (
@@ -70,9 +110,13 @@ function ImageSlider({ images, title, autoPlay = true }: ImageSliderProps) {
 
   return (
     <div
-      className="relative h-full w-full overflow-hidden"
+      className="relative h-full w-full overflow-hidden select-none"
+      style={{ touchAction: "pan-y" }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
     >
       {/* Slides Container */}
       <div
@@ -84,7 +128,7 @@ function ImageSlider({ images, title, autoPlay = true }: ImageSliderProps) {
             <img
               src={img}
               alt={`${title} - image ${idx + 1}`}
-              className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+              className="h-full w-full object-cover pointer-events-none transition-transform duration-700 hover:scale-105"
             />
           </div>
         ))}

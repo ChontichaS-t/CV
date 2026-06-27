@@ -61,6 +61,8 @@ const awards = [
 
 function AwardCarousel({ images, title }: { images: string[]; title: string }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [touchEndX, setTouchEndX] = useState<number | null>(null);
 
   useEffect(() => {
     if (images.length < 2) {
@@ -82,14 +84,47 @@ function AwardCarousel({ images, title }: { images: string[]; title: string }) {
     setActiveIndex(nextIndex);
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.targetTouches[0].clientX);
+    setTouchEndX(null);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEndX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX === null || touchEndX === null) return;
+    const diffX = touchStartX - touchEndX;
+    const minSwipeDistance = 50;
+
+    if (Math.abs(diffX) > minSwipeDistance) {
+      if (diffX > 0) {
+        // Swipe left -> Next image
+        goToIndex(activeIndex + 1);
+      } else {
+        // Swipe right -> Prev image
+        goToIndex(activeIndex - 1);
+      }
+    }
+    setTouchStartX(null);
+    setTouchEndX(null);
+  };
+
   return (
     <div className="w-full max-w-none">
       <div className="rounded-[28px] bg-white/8 p-3 shadow-[0_24px_80px_rgba(0,0,0,0.18)] backdrop-blur-xl">
-        <div className="relative overflow-hidden rounded-[22px] bg-black/10">
+        <div
+          className="relative overflow-hidden rounded-[22px] bg-black/10 select-none"
+          style={{ touchAction: "pan-y" }}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
           <div className="relative h-[320px] overflow-hidden md:h-[360px]">
             <img
               alt={`${title} photo ${activeIndex + 1}`}
-              className="h-full w-full object-cover transition-transform duration-500"
+              className="h-full w-full object-cover pointer-events-none transition-transform duration-500"
               src={images[activeIndex]}
             />
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/50 via-black/15 to-transparent p-4">

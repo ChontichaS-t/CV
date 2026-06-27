@@ -23,7 +23,7 @@ body {
   min-height: 100vh;
   background-color: #ffffff;
   color: var(--foreground);
-  font-family: var(--font-inter), sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, var(--font-inter), sans-serif;
 }
 
 ::selection {
@@ -59,19 +59,18 @@ body {
 }
 
 .font-body-md {
-  font-family: var(--font-inter), sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, var(--font-inter), sans-serif;
 }
 
 .font-body-lg {
-  font-family: var(--font-inter), sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, var(--font-inter), sans-serif;
 }
 
 .font-headline-md,
 .font-headline-lg,
 .font-display-lg,
-.font-label-md,
-.font-mono {
-  font-family: var(--font-display), sans-serif;
+.font-label-md {
+  font-family: -apple-system, BlinkMacSystemFont, var(--font-inter), sans-serif;
 }
 
 .text-label-md {

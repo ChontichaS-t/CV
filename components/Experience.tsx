@@ -42,7 +42,6 @@ export default function Experience() {
     <section id="experience" className="mx-auto max-w-container-max px-gutter py-stack-lg">
       <div className="mb-12 flex items-end justify-between">
         <h2 className="font-headline-lg text-headline-lg text-primary">Work Experience</h2>
-        <span className="font-mono text-label-md text-secondary">/career_path</span>
       </div>
       <div className="space-y-8">
         {experiences.map((experience) => (

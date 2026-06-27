@@ -1,6 +1,24 @@
-const stats = [
-  { value: "3+", label: "Years Exp" },
-  { value: "12", label: "Projects Done" },
+const workExperiences = [
+  {
+    role: "UI/UX & Embedded Software Developer",
+    company: "Health Link",
+    period: "May 2026 - Present",
+  },
+  {
+    role: "Full-Stack Developer",
+    company: "Surasawat Village",
+    period: "May 2025 - Jun 2025",
+  },
+  {
+    role: "AI System Analyst & Backend Developer",
+    company: "Suratech Company",
+    period: "May 2025 - Jun 2025",
+  },
+  {
+    role: "IT Support Assistant",
+    company: "Suranaree University of Technology Hospital",
+    period: "Feb 2025 - Mar 2025",
+  },
 ];
 
 const awards = [
@@ -22,26 +40,23 @@ export default function Highlights() {
   return (
     <>
       <section className="bg-surface-container-lowest py-stack-lg border-y border-outline-variant/30">
-        <div className="max-w-container-max mx-auto px-gutter grid md:grid-cols-2 gap-12 items-center">
-          <h2 className="font-headline-lg text-headline-lg text-primary leading-tight">
-            Technical precision <br />meets minimalist <br />design philosophy.
-          </h2>
-          <div className="space-y-6">
-            <p className="font-body-lg text-body-lg text-on-surface-variant">
-              My approach to development is rooted in the "California Minimalist" aesthetic -
-              prioritizing content through extreme clarity and rhythmic use of typography. I believe
-              that code should be as clean and intentional as the UI it powers.
-            </p>
-            <div className="flex gap-8 items-center pt-4">
-              {stats.map((stat) => (
-                <div key={stat.label}>
-                  <p className="font-display-lg text-[40px] font-bold text-primary">{stat.value}</p>
-                  <p className="font-label-md text-label-md text-secondary uppercase tracking-widest">
-                    {stat.label}
-                  </p>
-                </div>
-              ))}
-            </div>
+        <div className="max-w-container-max mx-auto px-gutter">
+          <div className="mb-10 flex items-end justify-between gap-6">
+            <h2 className="font-headline-lg text-headline-lg text-primary leading-tight">
+              Work Experience
+            </h2>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {workExperiences.map((experience) => (
+              <article
+                key={`${experience.company}-${experience.role}`}
+                className="rounded-2xl border border-outline-variant/30 bg-surface-container px-5 py-6 transition-colors hover:bg-surface-bright"
+              >
+                <p className="font-mono text-label-md text-secondary">{experience.period}</p>
+                <h3 className="mt-3 font-headline-md text-headline-md text-primary">{experience.role}</h3>
+                <p className="mt-2 font-body-md text-secondary">{experience.company}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>

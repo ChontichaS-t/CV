@@ -48,7 +48,7 @@ export default function Highlights() {
 
       <section className="py-stack-lg bg-primary text-on-primary">
         <div className="max-w-container-max mx-auto px-gutter">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid gap-12 items-center">
             <div>
               <h2 className="font-headline-lg text-headline-lg mb-8">Recognition & Awards</h2>
               <div className="space-y-8">
@@ -65,18 +65,6 @@ export default function Highlights() {
                     </div>
                   </div>
                 ))}
-              </div>
-            </div>
-            <div className="relative group">
-              <div className="absolute -inset-4 bg-white/5 blur-3xl group-hover:bg-white/10 transition-all rounded-full" />
-              <div className="relative border border-white/20 p-12 rounded-3xl backdrop-blur-sm text-center">
-                <h3 className="font-display-lg text-[48px] mb-4">Let's build something exceptional.</h3>
-                <p className="text-on-primary/70 mb-8 max-w-sm mx-auto">
-                  Open for collaborations and high-impact engineering opportunities.
-                </p>
-                <button className="w-full py-4 bg-white text-primary rounded-full font-label-md text-label-md hover:bg-surface-container transition-all">
-                  Get in touch
-                </button>
               </div>
             </div>
           </div>

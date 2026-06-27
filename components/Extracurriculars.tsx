@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const activities = [
   {
@@ -24,6 +24,19 @@ const activities = [
     tags: ["Community", "Coding Workshops", "Tech Meetups", "Networking"],
     images: ["/extracurricular/club.png"],
   },
+  {
+    title: "CPE 27 Graduation Congratulatory Event",
+    role: "Head of Welfare and Logistics",
+    description: "Led the welfare team to manage logistics, catering, and facilities for the CPE 27 graduation event.",
+    tags: ["Logistics", "Catering", "Facilities", "Welfare Team"],
+    images: [
+      "/congra/congra1.jpg",
+      "/congra/congra2.jpg",
+      "/congra/congra3.jpg",
+      "/congra/congra4.jpg",
+      "/congra/congra5.jpg"
+    ],
+  },
 ];
 
 interface ImageSliderProps {
@@ -46,17 +59,6 @@ function ImageSlider({ images, title, autoPlay = true }: ImageSliderProps) {
     return () => clearInterval(interval);
   }, [images.length, autoPlay, isHovered]);
 
-  const handlePrev = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
-  };
-
-  const handleNext = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-  };
 
   if (images.length === 0) {
     return (
@@ -88,30 +90,6 @@ function ImageSlider({ images, title, autoPlay = true }: ImageSliderProps) {
         ))}
       </div>
 
-      {/* Navigation Arrows */}
-      {images.length > 1 && (
-        <>
-          <button
-            onClick={handlePrev}
-            className={`absolute left-3 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm transition-all duration-300 hover:bg-black/60 ${
-              isHovered ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2 pointer-events-none"
-            }`}
-            aria-label="Previous image"
-          >
-            <span className="material-symbols-outlined text-[18px]">chevron_left</span>
-          </button>
-          <button
-            onClick={handleNext}
-            className={`absolute right-3 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm transition-all duration-300 hover:bg-black/60 ${
-              isHovered ? "opacity-100 translate-x-0" : "opacity-0 translate-x-2 pointer-events-none"
-            }`}
-            aria-label="Next image"
-          >
-            <span className="material-symbols-outlined text-[18px]">chevron_right</span>
-          </button>
-        </>
-      )}
-
       {/* Dots Indicator */}
       {images.length > 1 && (
         <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5 rounded-full bg-black/35 px-2.5 py-1 backdrop-blur-sm">
@@ -136,52 +114,119 @@ function ImageSlider({ images, title, autoPlay = true }: ImageSliderProps) {
 }
 
 export default function Extracurriculars() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [showLeftArrow, setShowLeftArrow] = useState(false);
+  const [showRightArrow, setShowRightArrow] = useState(true);
+
+  const checkScroll = () => {
+    if (scrollRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+      setShowLeftArrow(scrollLeft > 10);
+      setShowRightArrow(scrollLeft + clientWidth < scrollWidth - 10);
+    }
+  };
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (el) {
+      el.addEventListener("scroll", checkScroll);
+      checkScroll();
+      window.addEventListener("resize", checkScroll);
+    }
+    return () => {
+      if (el) {
+        el.removeEventListener("scroll", checkScroll);
+      }
+      window.removeEventListener("resize", checkScroll);
+    };
+  }, []);
+
+  const handleScroll = (direction: "left" | "right") => {
+    if (scrollRef.current) {
+      const scrollAmount = direction === "left" ? -360 : 360;
+      scrollRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    }
+  };
+
   return (
     <section id="extracurriculars" className="bg-surface py-stack-lg border-t border-outline-variant/20">
       <div className="mx-auto max-w-container-max px-gutter">
         <div className="mb-12">
           <h2 className="font-headline-lg text-headline-lg text-primary">Extracurricular Activities</h2>
         </div>
-        <div className="grid gap-stack-md grid-cols-1 md:grid-cols-3">
-          {activities.map((activity) => (
-            <article
-              key={activity.title}
-              className="group flex flex-col overflow-hidden rounded-3xl border border-outline-variant/20 bg-white transition-all duration-500 hover:shadow-xl"
-            >
-              {/* Image Carousel Area */}
-              <div className="relative h-[280px] w-full overflow-hidden bg-surface-container">
-                <ImageSlider images={activity.images} title={activity.title} />
-              </div>
 
-              {/* Text / Info Area */}
-              <div className="flex flex-1 flex-col p-6">
-                <div className="mb-3">
-                  <span className="inline-block rounded-full bg-surface-container px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-secondary">
-                    {activity.role}
-                  </span>
+        {/* Scroll Container Wrapper */}
+        <div className="relative group/scroll-container">
+          {/* Scrollable Container */}
+          <div
+            ref={scrollRef}
+            className="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+          >
+            {activities.map((activity) => (
+              <article
+                key={activity.title}
+                className="group flex w-[290px] sm:w-[340px] md:w-[380px] shrink-0 snap-start flex-col overflow-hidden rounded-xl border border-outline-variant/20 bg-white transition-all duration-500 hover:shadow-xl"
+              >
+                {/* Image Carousel Area */}
+                <div className="relative h-[280px] w-full overflow-hidden bg-surface-container">
+                  <ImageSlider images={activity.images} title={activity.title} />
                 </div>
-                
-                <h3 className="font-headline-md text-[20px] font-semibold text-primary mb-3 leading-tight">
-                  {activity.title}
-                </h3>
-                
-                <p className="font-body-md text-sm text-secondary mb-6 flex-1 leading-relaxed">
-                  {activity.description}
-                </p>
 
-                <div className="flex flex-wrap gap-2 pt-2 border-t border-outline-variant/10">
-                  {activity.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-md bg-surface-container px-2.5 py-0.5 text-[11px] font-mono text-secondary"
-                    >
-                      {tag}
+                {/* Text / Info Area */}
+                <div className="flex flex-1 flex-col p-6">
+                  <div className="mb-3">
+                    <span className="inline-block rounded-md bg-surface-container px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-secondary">
+                      {activity.role}
                     </span>
-                  ))}
+                  </div>
+
+                  <h3 className="font-headline-md text-[20px] font-semibold text-primary mb-3 leading-tight">
+                    {activity.title}
+                  </h3>
+
+                  <p className="font-body-md text-sm text-secondary mb-6 flex-1 leading-relaxed">
+                    {activity.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 pt-2 border-t border-outline-variant/10">
+                    {activity.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-md bg-surface-container px-2.5 py-0.5 text-[11px] font-mono text-secondary"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            ))}
+          </div>
+
+          {/* Navigation Arrows */}
+          {showLeftArrow && (
+            <button
+              onClick={() => handleScroll("left")}
+              className="absolute xl:-left-20 lg:-left-14 -left-6 top-1/2 -translate-y-1/2 z-10 hidden md:flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-lg border border-outline-variant/20 text-primary transition-all duration-300 hover:bg-surface-container hover:scale-105"
+              aria-label="Scroll left"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+              </svg>
+            </button>
+          )}
+
+          {showRightArrow && (
+            <button
+              onClick={() => handleScroll("right")}
+              className="absolute xl:-right-20 lg:-right-14 -right-6 top-1/2 -translate-y-1/2 z-10 hidden md:flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-lg border border-outline-variant/20 text-primary transition-all duration-300 hover:bg-surface-container hover:scale-105"
+              aria-label="Scroll right"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+              </svg>
+            </button>
+          )}
         </div>
       </div>
     </section>

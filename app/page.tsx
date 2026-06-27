@@ -1,5 +1,6 @@
 import Footer from "../components/Footer";
 import Highlights from "../components/Highlights";
+import Education from "../components/Education";
 import Hero from "../components/Hero";
 import Experience from "../components/Experience";
 import AcademicProjects from "../components/AcademicProjects";
@@ -17,6 +18,7 @@ export default function HomePage() {
       <Experience />
       <AcademicProjects />
       <Highlights />
+      <Education />
       <Extracurriculars />
       <Skills />
       <Footer />

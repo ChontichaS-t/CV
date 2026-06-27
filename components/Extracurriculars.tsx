@@ -18,13 +18,6 @@ const activities = [
     images: ["/ai/ai1.jpg", "/ai/ai2.jpg", "/ai/ai3.png"],
   },
   {
-    title: "Computer Engineering Club",
-    role: "Member",
-    description: "Participated in coding workshops and helped organize tech meetups for fellow students.",
-    tags: ["Community", "Coding Workshops", "Tech Meetups", "Networking"],
-    images: ["/extracurricular/club.png"],
-  },
-  {
     title: "CPE 27 Graduation Congratulatory Event",
     role: "Head of Welfare and Logistics",
     description: "Led the welfare team to manage logistics, catering, and facilities for the CPE 27 graduation event.",

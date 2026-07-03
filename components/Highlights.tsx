@@ -23,11 +23,12 @@ const awards = [
     ],
     accentColor: "from-rose-500 via-orange-500 to-amber-500",
     images: [
-      "https://media.discordapp.net/attachments/1392574460372189276/1520295169029570650/image.jpg?ex=6a40acb6&is=6a3f5b36&hm=f2a94f7423db355df099f51b1875eec5970fc091ff4f681613456e74e5573b3f&=&format=webp&width=810&height=608",
-      "https://media.discordapp.net/attachments/1392574460372189276/1520295169285558322/image.jpg?ex=6a40acb6&is=6a3f5b36&hm=64124b1636275115602af5adcc03ec2aedb2e77e96354765e8376d4db9db1e18&=&format=webp&width=810&height=608",
-      "https://media.discordapp.net/attachments/1392574460372189276/1520295169826492596/image.jpg?ex=6a40acb6&is=6a3f5b36&hm=4d319b23862587e95ee54a67d9d92d2ed936b31fe80fa90c980b038198e510a0&=&format=webp&width=810&height=608",
-      "https://media.discordapp.net/attachments/1392574460372189276/1520295168740294767/image.jpg?ex=6a40acb5&is=6a3f5b35&hm=122b9154245387f22c10416253975e2c204c33d65456d4dda443f5c1ea2f2704&=&format=webp&width=810&height=608",
-      "https://media.discordapp.net/attachments/1392574460372189276/1520295169570635846/image.jpg?ex=6a40acb6&is=6a3f5b36&hm=4be0499227657730c0a982680e6cc4400f1779291cd3833bcef1f2e137d43525&=&format=webp&width=810&height=608",
+      "/hk/hk1.jpg",
+      "/hk/hk2.jpg",
+      "/hk/hk3.jpg",
+      "/hk/hk4.jpg",
+      "/hk/hk5.jpg",
+      "/hk/tong.png",
     ],
   },
   {

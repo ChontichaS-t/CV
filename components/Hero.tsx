@@ -28,7 +28,7 @@ export default function Hero() {
           <img
             alt="Full-body portrait of Chonticha"
             className="block h-auto w-full object-contain"
-            src="https://cdn.discordapp.com/attachments/1392574460372189276/1520085058650636328/transparent-Photoroom_1.png?ex=6a3fe907&is=6a3e9787&hm=84fbe40b5c881d18fe7cd2437e99c3f2f250ae62e80a6e1b676e1c97fa1c4711&"
+            src="/tong2.png"
           />
         </div>
       </div>

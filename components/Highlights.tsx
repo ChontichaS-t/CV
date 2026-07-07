@@ -28,7 +28,6 @@ const awards = [
       "/hk/hk3.jpg",
       "/hk/hk4.jpg",
       "/hk/hk5.jpg",
-      "/hk/tong.png",
     ],
   },
   {
@@ -114,9 +113,9 @@ function AwardCarousel({ images, title }: { images: string[]; title: string }) {
 
   return (
     <div className="w-full max-w-none">
-      <div className="rounded-[28px] bg-white border border-outline-variant/20 p-3 shadow-soft">
+      <div className="bg-transparent p-0">
         <div
-          className="relative overflow-hidden rounded-[22px] bg-neutral-100 select-none"
+          className="relative overflow-hidden rounded-none bg-neutral-100 select-none"
           style={{ touchAction: "pan-y" }}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
@@ -142,7 +141,7 @@ function AwardCarousel({ images, title }: { images: string[]; title: string }) {
             <button
               key={`${title}-thumb-${index}`}
               aria-label={`Go to image ${index + 1}`}
-              className={`relative h-16 w-24 shrink-0 overflow-hidden rounded-2xl border transition-all duration-300 md:h-18 md:w-28 ${
+              className={`relative h-16 w-24 shrink-0 overflow-hidden rounded-none border transition-all duration-300 md:h-18 md:w-28 ${
                 index === activeIndex
                   ? "border-neutral-900 ring-2 ring-neutral-200"
                   : "border-neutral-200/60 opacity-70 hover:opacity-100"
@@ -162,7 +161,7 @@ function AwardCarousel({ images, title }: { images: string[]; title: string }) {
 export default function Highlights() {
   return (
     <>
-      <section className="bg-surface py-stack-lg text-primary border-t border-outline-variant/20">
+      <section className="bg-surface-container py-stack-lg text-primary border-t border-outline-variant/20">
         <div className="mx-auto max-w-container-max px-gutter">
           <div className="mb-16 flex items-end justify-between gap-6">
             <div>

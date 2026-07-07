@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 const activities = [
   {
@@ -121,15 +121,15 @@ function ImageSlider({ images, title, autoPlay = true }: ImageSliderProps) {
             <img
               src={img}
               alt={`${title} - image ${idx + 1}`}
-              className="h-full w-full object-cover pointer-events-none transition-transform duration-700 hover:scale-105"
+              className="h-full w-full object-cover pointer-events-none transition-transform duration-700 group-hover:scale-105"
             />
           </div>
         ))}
       </div>
 
-      {/* Dots Indicator */}
+      {/* Dots Indicator (Moved to top right) */}
       {images.length > 1 && (
-        <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5 rounded-full bg-black/35 px-2.5 py-1 backdrop-blur-sm">
+        <div className="absolute top-4 right-4 flex gap-1.5 rounded-full bg-black/35 px-2.5 py-1 backdrop-blur-sm z-20">
           {images.map((_, idx) => (
             <button
               key={idx}
@@ -151,40 +151,6 @@ function ImageSlider({ images, title, autoPlay = true }: ImageSliderProps) {
 }
 
 export default function Extracurriculars() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [showLeftArrow, setShowLeftArrow] = useState(false);
-  const [showRightArrow, setShowRightArrow] = useState(true);
-
-  const checkScroll = () => {
-    if (scrollRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-      setShowLeftArrow(scrollLeft > 10);
-      setShowRightArrow(scrollLeft + clientWidth < scrollWidth - 10);
-    }
-  };
-
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (el) {
-      el.addEventListener("scroll", checkScroll);
-      checkScroll();
-      window.addEventListener("resize", checkScroll);
-    }
-    return () => {
-      if (el) {
-        el.removeEventListener("scroll", checkScroll);
-      }
-      window.removeEventListener("resize", checkScroll);
-    };
-  }, []);
-
-  const handleScroll = (direction: "left" | "right") => {
-    if (scrollRef.current) {
-      const scrollAmount = direction === "left" ? -360 : 360;
-      scrollRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
-    }
-  };
-
   return (
     <section id="extracurriculars" className="bg-surface py-stack-lg border-t border-outline-variant/20">
       <div className="mx-auto max-w-container-max px-gutter">
@@ -192,78 +158,44 @@ export default function Extracurriculars() {
           <h2 className="font-headline-lg text-headline-lg text-primary">Extracurricular Activities</h2>
         </div>
 
-        {/* Scroll Container Wrapper */}
-        <div className="relative group/scroll-container">
-          {/* Scrollable Container */}
-          <div
-            ref={scrollRef}
-            className="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-          >
-            {activities.map((activity) => (
+        {/* Bento Grid layout with overlay text */}
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-1 md:gap-1.5">
+          {activities.map((activity, index) => {
+            const isWide = index === 0 || index === 3;
+            return (
               <article
                 key={activity.title}
-                className="group flex w-[290px] sm:w-[340px] md:w-[380px] shrink-0 snap-start flex-col overflow-hidden rounded-xl border border-outline-variant/20 bg-white transition-all duration-500 hover:shadow-xl"
+                className={`group relative flex flex-col overflow-hidden bg-black transition-all duration-500 hover:shadow-2xl hover:-translate-y-1 h-[380px] sm:h-[420px] ${
+                  isWide ? "md:col-span-3" : "md:col-span-2"
+                }`}
               >
-                {/* Image Carousel Area */}
-                <div className="relative h-[280px] w-full overflow-hidden bg-surface-container">
+                {/* Image Slider Area (occupies full card background) */}
+                <div className="absolute inset-0 w-full h-full bg-surface-container">
                   <ImageSlider images={activity.images} title={activity.title} />
                 </div>
 
-                {/* Text / Info Area */}
-                <div className="flex flex-1 flex-col p-6">
+                {/* Dark Gradient Overlay for text readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent pointer-events-none z-10" />
+
+                {/* Text / Info Area (positioned at bottom overlay) */}
+                <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-8 text-white z-10 pointer-events-none">
                   <div className="mb-3">
-                    <span className="inline-block rounded-md bg-surface-container px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-secondary">
+                    <span className="inline-block rounded-md bg-white/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white/95 backdrop-blur-sm">
                       {activity.role}
                     </span>
                   </div>
 
-                  <h3 className="font-headline-md text-[20px] font-semibold text-primary mb-3 leading-tight">
+                  <h3 className="font-headline-md text-[20px] sm:text-[22px] font-semibold text-white mb-3 leading-tight">
                     {activity.title}
                   </h3>
 
-                  <p className="font-body-md text-sm text-secondary mb-6 flex-1 leading-relaxed">
+                  <p className="font-body-md text-sm text-white/85 leading-relaxed max-w-xl">
                     {activity.description}
                   </p>
-
-                  <div className="flex flex-wrap gap-2 pt-2 border-t border-outline-variant/10">
-                    {activity.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-md bg-surface-container px-2.5 py-0.5 text-[11px] font-mono text-secondary"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
                 </div>
               </article>
-            ))}
-          </div>
-
-          {/* Navigation Arrows */}
-          {showLeftArrow && (
-            <button
-              onClick={() => handleScroll("left")}
-              className="absolute xl:-left-20 lg:-left-14 -left-6 top-1/2 -translate-y-1/2 z-10 hidden md:flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-lg border border-outline-variant/20 text-primary transition-all duration-300 hover:bg-surface-container hover:scale-105"
-              aria-label="Scroll left"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-              </svg>
-            </button>
-          )}
-
-          {showRightArrow && (
-            <button
-              onClick={() => handleScroll("right")}
-              className="absolute xl:-right-20 lg:-right-14 -right-6 top-1/2 -translate-y-1/2 z-10 hidden md:flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-lg border border-outline-variant/20 text-primary transition-all duration-300 hover:bg-surface-container hover:scale-105"
-              aria-label="Scroll right"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-              </svg>
-            </button>
-          )}
+            );
+          })}
         </div>
       </div>
     </section>

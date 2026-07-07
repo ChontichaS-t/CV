@@ -3,9 +3,9 @@
 import { useState, useEffect } from "react";
 
 const navigation = [
+  { label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
-  { label: "Education", href: "#education" },
   { label: "Extracurriculars", href: "#extracurriculars" },
   { label: "Skills", href: "#skills" },
   { label: "Contact", href: "#contact" },
@@ -14,6 +14,7 @@ const navigation = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -27,7 +28,7 @@ export default function Navbar() {
     };
   }, [isOpen]);
 
-  // Track scroll position to transition the navbar style
+  // Track scroll position to transition the navbar style and check dark section overlap
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 60) {
@@ -35,7 +36,19 @@ export default function Navbar() {
       } else {
         setIsScrolled(false);
       }
+
+      const aboutEl = document.getElementById("about");
+      if (aboutEl) {
+        const rect = aboutEl.getBoundingClientRect();
+        // Navbar is 64px tall. Check if the navbar overlaps with the #about section bounds.
+        const overlaps = rect.top <= 0 && rect.bottom >= 64;
+        setIsDarkTheme(overlaps);
+      } else {
+        setIsDarkTheme(false);
+      }
     };
+
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -56,16 +69,24 @@ export default function Navbar() {
         data-site-header
         className={`fixed top-0 z-50 w-full transition-all duration-300 ease-in-out ${
           isOpen
-            ? "bg-surface text-primary border-b border-outline-variant/20"
+            ? (isDarkTheme 
+                ? "bg-black text-white border-b border-white/10" 
+                : "bg-surface text-primary border-b border-outline-variant/20")
             : (isScrolled
-                ? "border-b border-outline-variant/20 bg-surface/85 backdrop-blur-md text-primary py-2 shadow-sm"
-                : "border-b border-transparent bg-transparent text-primary py-4")
+                ? (isDarkTheme
+                    ? "border-b border-white/10 bg-black/85 backdrop-blur-md text-white py-2 shadow-md"
+                    : "border-b border-outline-variant/20 bg-surface/85 backdrop-blur-md text-primary py-2 shadow-sm")
+                : (isDarkTheme
+                    ? "border-b border-transparent bg-transparent text-white py-4"
+                    : "border-b border-transparent bg-transparent text-primary py-4"))
         }`}
       >
         <div className="mx-auto flex h-16 max-w-container-max items-center justify-between px-gutter">
           <a
             href="#top"
-            className="transition-all duration-300 select-none font-bold uppercase tracking-widest text-[13px] sm:text-[15px] lg:text-[17px] hover:opacity-85 text-primary"
+            className={`transition-all duration-300 select-none font-bold uppercase tracking-widest text-[13px] sm:text-[15px] lg:text-[17px] hover:opacity-85 ${
+              isDarkTheme ? "text-white" : "text-primary"
+            }`}
           >
             CHONTICHA SUKCHALEE
           </a>
@@ -76,14 +97,22 @@ export default function Navbar() {
               <a
                 key={item.href}
                 href={item.href}
-                className="font-label-md text-label-md transition-colors duration-200 text-secondary hover:text-primary"
+                className={`font-label-md text-label-md transition-colors duration-200 ${
+                  isDarkTheme 
+                    ? "text-neutral-400 hover:text-white" 
+                    : "text-secondary hover:text-primary"
+                }`}
               >
                 {item.label}
               </a>
             ))}
             <a
               href="#contact"
-              className="rounded-full px-6 py-2.5 font-label-md text-label-md transition-all duration-300 bg-primary text-on-primary hover:bg-neutral-800 hover:scale-105"
+              className={`rounded-full px-6 py-2.5 font-label-md text-label-md transition-all duration-300 hover:scale-105 ${
+                isDarkTheme
+                  ? "bg-white text-black hover:bg-neutral-200"
+                  : "bg-primary text-on-primary hover:bg-neutral-800"
+              }`}
             >
               Contact
             </a>
@@ -97,19 +126,19 @@ export default function Navbar() {
             aria-label="Toggle menu"
           >
             <span
-              className={`block h-[2px] w-6 transition-all duration-300 ease-in-out bg-primary ${
-                isOpen ? "translate-y-[8px] rotate-45" : ""
-              }`}
+              className={`block h-[2px] w-6 transition-all duration-300 ease-in-out ${
+                isDarkTheme ? "bg-white" : "bg-primary"
+              } ${isOpen ? "translate-y-[8px] rotate-45" : ""}`}
             />
             <span
-              className={`block h-[2px] w-6 transition-all duration-300 ease-in-out bg-primary ${
-                isOpen ? "opacity-0" : ""
-              }`}
+              className={`block h-[2px] w-6 transition-all duration-300 ease-in-out ${
+                isDarkTheme ? "bg-white" : "bg-primary"
+              } ${isOpen ? "opacity-0" : ""}`}
             />
             <span
-              className={`block h-[2px] w-6 transition-all duration-300 ease-in-out bg-primary ${
-                isOpen ? "-translate-y-[8px] -rotate-45" : ""
-              }`}
+              className={`block h-[2px] w-6 transition-all duration-300 ease-in-out ${
+                isDarkTheme ? "bg-white" : "bg-primary"
+              } ${isOpen ? "-translate-y-[8px] -rotate-45" : ""}`}
             />
           </button>
         </div>
@@ -121,13 +150,21 @@ export default function Navbar() {
           }`}
         >
           <div className="overflow-hidden">
-            <nav className="flex flex-col gap-4 px-gutter pb-6 pt-2 border-t transition-colors duration-300 border-outline-variant/20 bg-surface text-primary">
+            <nav className={`flex flex-col gap-4 px-gutter pb-6 pt-2 border-t transition-colors duration-300 ${
+              isDarkTheme
+                ? "border-white/10 bg-black text-white"
+                : "border-outline-variant/20 bg-surface text-primary"
+            }`}>
               {navigation.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
-                  className="font-medium text-[16px] py-2 transition-colors text-secondary hover:text-primary"
+                  className={`font-medium text-[16px] py-2 transition-colors ${
+                    isDarkTheme
+                      ? "text-neutral-400 hover:text-white"
+                      : "text-secondary hover:text-primary"
+                  }`}
                 >
                   {item.label}
                 </a>
@@ -135,7 +172,11 @@ export default function Navbar() {
               <a
                 href="#contact"
                 onClick={() => setIsOpen(false)}
-                className="rounded-full px-5 py-3 text-center font-label-md text-label-md transition-all duration-300 bg-primary text-on-primary hover:bg-neutral-800"
+                className={`rounded-full px-5 py-3 text-center font-label-md text-label-md transition-all duration-300 ${
+                  isDarkTheme
+                    ? "bg-white text-black hover:bg-neutral-200"
+                    : "bg-primary text-on-primary hover:bg-neutral-800"
+                }`}
               >
                 Contact
               </a>

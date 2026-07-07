@@ -37,15 +37,15 @@ const projects: Project[] = [
   },
   {
     num: "03",
-    title: "Alumni Relations Platform",
+    title: "Computer Leasing Management System",
     course: "Software Engineering",
     role: "Full-Stack Developer",
-    summary: "A containerized community platform streamlining alumni registration, authentication, and souvenir administration.",
+    summary: "Co-developed a full-stack decoupled web platform featuring 10 integrated modules for IT procurement and asset leasing.",
     highlights: [
-      "Configured database models using Prisma ORM and designed clean RESTful APIs.",
-      "Integrated Docker environments and GitHub Actions workflows for continuous integration."
+      "Delivered features incrementally using Agile/Scrum methodologies across bi-weekly sprints.",
+      "Conducted server testing using Raspberry Pi environments to validate deployment."
     ],
-    tech: ["Next.js", "React", "Prisma", "PostgreSQL", "Redis", "Docker"]
+    tech: ["React", "Spring Boot", "PostgreSQL", "Raspberry Pi", "Git/GitHub", "Docker"]
   },
   {
     num: "04",

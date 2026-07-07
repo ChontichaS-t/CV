@@ -1,7 +1,7 @@
 import Footer from "../components/Footer";
 import Highlights from "../components/Highlights";
-import Education from "../components/Education";
 import Hero from "../components/Hero";
+import About from "../components/About";
 import Experience from "../components/Experience";
 import AcademicProjects from "../components/AcademicProjects";
 import Navbar from "../components/Navbar";
@@ -15,10 +15,10 @@ export default function HomePage() {
       <ScrollEffects />
       <Navbar />
       <Hero />
+      <About />
       <Experience />
       <AcademicProjects />
       <Highlights />
-      <Education />
       <Extracurriculars />
       <Skills />
       <Footer />

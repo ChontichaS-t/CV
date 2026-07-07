@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 // High-fidelity geometric letters styled like the Squid Game title typography.
 const LETTER_PATHS: Record<string, React.ReactNode> = {
@@ -45,6 +45,13 @@ function GeometricLetter({ letter, className = "", isPink = false }: GeometricLe
 }
 
 export default function Hero() {
+  const [animate, setAnimate] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setAnimate(true), 150);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section
       id="top"
@@ -52,7 +59,9 @@ export default function Hero() {
     >
 
       {/* Right-aligned Portrait Image */}
-      <div className="absolute inset-x-0 bottom-0 top-0 pointer-events-none z-20 hidden lg:block select-none">
+      <div className={`absolute inset-x-0 bottom-0 top-0 pointer-events-none z-20 hidden lg:block select-none transition-all duration-1000 delay-500 ease-out transform ${
+        animate ? "opacity-100 translate-x-0 scale-100" : "opacity-0 translate-x-8 scale-95"
+      }`}>
         <div className="mx-auto w-full max-w-container-max px-gutter h-full relative">
           <div className="absolute right-gutter bottom-0 top-0 flex justify-end items-end">
             <div className="relative h-[106%] w-auto max-h-[680px] flex items-end">
@@ -76,22 +85,27 @@ export default function Hero() {
           <div className="absolute top-[14%] lg:top-[18%] left-0 z-30 max-w-[750px] flex flex-col gap-6 text-left">
             
             {/* Left-Aligned Standard Name: Chonticha Sukchalee */}
-            <h1 className="text-[clamp(2.8rem,6vw,4.5rem)] font-bold select-none font-sans text-primary whitespace-nowrap">
+            <h1 className={`text-[clamp(2.8rem,6vw,4.5rem)] font-bold select-none font-sans text-primary whitespace-nowrap transition-all duration-1000 ease-out transform ${
+              animate ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
+            }`}>
               Chonticha <span className="text-neutral-500">Sukchalee</span>
             </h1>
 
             {/* Bio & Details */}
             <div className="mt-2 flex flex-col gap-4">
               <div>
-                <p className="text-primary font-bold tracking-widest uppercase text-xs mb-2 font-sans">
+                <p className={`text-primary font-bold tracking-widest uppercase text-lg lg:text-xl mb-3 font-sans transition-all duration-1000 delay-200 ease-out transform ${
+                  animate ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                }`}>
                   Full Stack Developer Intern
                 </p>
-                <p className="text-secondary text-[14px] leading-relaxed font-sans max-w-[460px]">
+                <p className={`text-secondary text-base lg:text-[18px] leading-relaxed font-sans max-w-[520px] transition-all duration-1000 delay-400 ease-out transform ${
+                  animate ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                }`}>
                   I am a Computer Engineering student looking for an internship opportunity in a real-world development environment. I bring a solid engineering foundation and a strong willingness to adapt to the team&apos;s standards and culture.
                 </p>
               </div>
             </div>
-
 
           </div>
 
@@ -101,12 +115,16 @@ export default function Hero() {
         <div className="lg:hidden flex flex-col items-center w-full gap-8 py-4">
           
           {/* Mobile Name Logo */}
-          <h1 className="text-[30px] sm:text-[38px] font-bold select-none text-center font-sans mt-2 text-primary whitespace-nowrap">
+          <h1 className={`text-[30px] sm:text-[38px] font-bold select-none text-center font-sans mt-2 text-primary whitespace-nowrap transition-all duration-1000 ease-out transform ${
+            animate ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
+          }`}>
             Chonticha <span className="text-neutral-500">Sukchalee</span>
           </h1>
 
           {/* Centered Image (Mobile) */}
-          <div className="w-full max-w-[320px] sm:max-w-[380px] h-[320px] sm:h-[380px] flex justify-center items-end relative z-10">
+          <div className={`w-full max-w-[320px] sm:max-w-[380px] h-[320px] sm:h-[380px] flex justify-center items-end relative z-10 transition-all duration-1000 delay-300 ease-out transform ${
+            animate ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 translate-y-4"
+          }`}>
             <img
               alt="Portrait of Chonticha"
               className="h-full w-auto object-contain filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.06)]"
@@ -117,14 +135,17 @@ export default function Hero() {
           {/* Mobile Info & Content */}
           <div className="flex flex-col items-center gap-6 px-4 text-center z-20">
             <div className="max-w-[480px]">
-              <p className="text-primary font-bold tracking-wider uppercase text-xs mb-2 font-sans">
+              <p className={`text-primary font-bold tracking-wider uppercase text-base sm:text-lg mb-3 font-sans transition-all duration-1000 delay-500 ease-out transform ${
+                animate ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}>
                 Full Stack Developer Intern
               </p>
-              <p className="text-secondary text-xs sm:text-sm leading-relaxed">
+              <p className={`text-secondary text-sm sm:text-base leading-relaxed transition-all duration-1000 delay-600 ease-out transform ${
+                animate ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}>
                 I am a Computer Engineering student looking for an internship opportunity in a real-world development environment. I bring a solid engineering foundation and a strong willingness to adapt to the team&apos;s standards and culture.
               </p>
             </div>
-
 
           </div>
 

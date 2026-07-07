@@ -33,20 +33,17 @@ export default function About() {
           <h2 className="font-headline-lg text-[32px] md:text-[42px] font-bold text-white leading-tight font-sans">
             About Me
           </h2>
-          <p className="text-neutral-500 font-sans text-sm mt-2">
-            My Introduction
-          </p>
         </div>
 
         {/* Content Layout */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-center">
           
           {/* Left Column: Portrait Photo */}
-          <div className={`md:col-span-5 flex justify-center transition-all duration-1000 delay-200 ease-out transform ${
+          <div className={`md:col-span-5 flex justify-center -mt-6 md:-mt-14 transition-all duration-1000 delay-200 ease-out transform ${
             visible ? "opacity-100 scale-100 translate-x-0" : "opacity-0 scale-95 -translate-x-8"
           }`}>
             <img
-              src="/tong3.png"
+              src="/tong5.png"
               alt="Chonticha Sukchalee Portrait"
               className="w-full max-w-[340px] h-auto object-contain transition-transform duration-700 hover:scale-105"
             />
@@ -113,9 +110,6 @@ export default function About() {
               }`}
             >
               <p className="text-neutral-300 text-sm sm:text-base leading-relaxed font-sans">
-                Hi, I am Chonticha Sukchalee, a Computer Engineering student at Suranaree University of Technology. I am looking for a Full Stack Developer Intern opportunity in a real-world development environment.
-              </p>
-              <p className="text-neutral-400 text-sm sm:text-base leading-relaxed font-sans">
                 I bring a solid engineering foundation, experience in building full-stack web platforms and embedded integrations, and a strong willingness to adapt to the team&apos;s standards, culture, and methodologies.
               </p>
             </div>

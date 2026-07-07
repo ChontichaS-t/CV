@@ -21,7 +21,7 @@ const awards = [
         desc: "Formulated complete commercialization plans and pitched to VCs and corporate leaders."
       }
     ],
-    accentColor: "from-rose-500 via-orange-500 to-amber-500",
+    accentColor: "from-neutral-900 via-neutral-600 to-neutral-300",
     images: [
       "/hk/hk1.jpg",
       "/hk/hk2.jpg",
@@ -48,7 +48,7 @@ const awards = [
         desc: "Collaborated with property industry mentors and presented solutions to corporate leadership."
       }
     ],
-    accentColor: "from-blue-500 via-indigo-500 to-purple-500",
+    accentColor: "from-neutral-800 via-neutral-500 to-neutral-300",
     images: [
       "/C2C1.jpg",
       "/C2C2.jpg",
@@ -114,9 +114,9 @@ function AwardCarousel({ images, title }: { images: string[]; title: string }) {
 
   return (
     <div className="w-full max-w-none">
-      <div className="rounded-[28px] bg-white/8 p-3 shadow-[0_24px_80px_rgba(0,0,0,0.18)] backdrop-blur-xl">
+      <div className="rounded-[28px] bg-white border border-outline-variant/20 p-3 shadow-soft">
         <div
-          className="relative overflow-hidden rounded-[22px] bg-black/10 select-none"
+          className="relative overflow-hidden rounded-[22px] bg-neutral-100 select-none"
           style={{ touchAction: "pan-y" }}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
@@ -129,7 +129,7 @@ function AwardCarousel({ images, title }: { images: string[]; title: string }) {
               src={images[activeIndex]}
             />
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/50 via-black/15 to-transparent p-4">
-              <p className="text-[11px] font-mono uppercase tracking-[0.32em] text-white/80">
+              <p className="text-[11px] font-mono uppercase tracking-[0.32em] text-white/85">
                 {activeIndex + 1} / {images.length}
               </p>
             </div>
@@ -144,8 +144,8 @@ function AwardCarousel({ images, title }: { images: string[]; title: string }) {
               aria-label={`Go to image ${index + 1}`}
               className={`relative h-16 w-24 shrink-0 overflow-hidden rounded-2xl border transition-all duration-300 md:h-18 md:w-28 ${
                 index === activeIndex
-                  ? "border-white/60 ring-2 ring-white/25"
-                  : "border-white/10 opacity-70 hover:opacity-100"
+                  ? "border-neutral-900 ring-2 ring-neutral-200"
+                  : "border-neutral-200/60 opacity-70 hover:opacity-100"
               }`}
               onClick={() => goToIndex(index)}
               type="button"
@@ -162,11 +162,11 @@ function AwardCarousel({ images, title }: { images: string[]; title: string }) {
 export default function Highlights() {
   return (
     <>
-      <section className="bg-[#0b0b0f] py-stack-lg text-white">
+      <section className="bg-surface py-stack-lg text-primary border-t border-outline-variant/20">
         <div className="mx-auto max-w-container-max px-gutter">
           <div className="mb-16 flex items-end justify-between gap-6">
             <div>
-              <h2 className="font-headline-lg text-headline-lg text-white">Awards & Highlights</h2>
+              <h2 className="font-headline-lg text-headline-lg text-primary">Awards & Highlights</h2>
             </div>
           </div>
 
@@ -195,7 +195,7 @@ export default function Highlights() {
                       isEven ? "order-2 lg:pl-8" : "order-2 lg:order-1 lg:pr-8"
                     }`}
                   >
-                    <h3 className="font-headline-lg text-[26px] md:text-[32px] font-bold text-white leading-tight">
+                    <h3 className="font-headline-lg text-[26px] md:text-[32px] font-bold text-primary leading-tight">
                       {award.title}
                     </h3>
                     
@@ -209,10 +209,10 @@ export default function Highlights() {
                       <div className="space-y-6">
                         {award.points.map((point) => (
                           <div key={point.title}>
-                            <h4 className="font-semibold text-[17px] md:text-[18px] text-white">
+                            <h4 className="font-semibold text-[17px] md:text-[18px] text-primary">
                               {point.title}
                             </h4>
-                            <p className="mt-1 text-sm md:text-body-md text-white/60 leading-relaxed">
+                            <p className="mt-1 text-sm md:text-body-md text-secondary leading-relaxed">
                               {point.desc}
                             </p>
                           </div>

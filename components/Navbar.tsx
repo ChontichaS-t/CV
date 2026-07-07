@@ -13,6 +13,7 @@ const navigation = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -26,11 +27,26 @@ export default function Navbar() {
     };
   }, [isOpen]);
 
+  // Track scroll position to transition the navbar style
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 60) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
       {/* Backdrop overlay */}
       <div
-        className={`fixed inset-0 z-40 bg-black/10 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
+        className={`fixed inset-0 z-40 bg-black/10 backdrop-blur-[2px] transition-opacity duration-300 md:hidden ${
           isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setIsOpen(false)}
@@ -38,11 +54,20 @@ export default function Navbar() {
 
       <header
         data-site-header
-        className="fixed top-0 z-50 w-full border-b border-outline-variant/30 bg-surface/80 backdrop-blur-md transition-all duration-300 ease-in-out"
+        className={`fixed top-0 z-50 w-full transition-all duration-300 ease-in-out ${
+          isOpen
+            ? "bg-surface text-primary border-b border-outline-variant/20"
+            : (isScrolled
+                ? "border-b border-outline-variant/20 bg-surface/85 backdrop-blur-md text-primary py-2 shadow-sm"
+                : "border-b border-transparent bg-transparent text-primary py-4")
+        }`}
       >
         <div className="mx-auto flex h-16 max-w-container-max items-center justify-between px-gutter">
-          <a href="#top" className="text-headline-md font-headline-md tracking-tighter text-primary">
-            Chonticha Sukchalee
+          <a
+            href="#top"
+            className="transition-all duration-300 select-none font-bold uppercase tracking-widest text-[13px] sm:text-[15px] lg:text-[17px] hover:opacity-85 text-primary"
+          >
+            CHONTICHA SUKCHALEE
           </a>
 
           {/* Desktop Navigation */}
@@ -51,14 +76,14 @@ export default function Navbar() {
               <a
                 key={item.href}
                 href={item.href}
-                className="font-label-md text-label-md text-secondary transition-colors hover:text-primary"
+                className="font-label-md text-label-md transition-colors duration-200 text-secondary hover:text-primary"
               >
                 {item.label}
               </a>
             ))}
             <a
               href="#contact"
-              className="rounded-full bg-primary px-5 py-2 font-label-md text-label-md text-on-primary transition-opacity hover:opacity-90"
+              className="rounded-full px-6 py-2.5 font-label-md text-label-md transition-all duration-300 bg-primary text-on-primary hover:bg-neutral-800 hover:scale-105"
             >
               Contact
             </a>
@@ -67,22 +92,22 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="flex h-10 w-10 flex-col items-center justify-center gap-[6px] rounded-full hover:bg-surface-container transition-colors md:hidden focus:outline-none z-50"
+            className="flex h-10 w-10 flex-col items-center justify-center gap-[6px] rounded-full transition-colors md:hidden focus:outline-none z-50 hover:bg-surface-container"
             aria-expanded={isOpen}
             aria-label="Toggle menu"
           >
             <span
-              className={`block h-[2px] w-6 bg-primary transition-all duration-300 ease-in-out ${
+              className={`block h-[2px] w-6 transition-all duration-300 ease-in-out bg-primary ${
                 isOpen ? "translate-y-[8px] rotate-45" : ""
               }`}
             />
             <span
-              className={`block h-[2px] w-6 bg-primary transition-all duration-300 ease-in-out ${
+              className={`block h-[2px] w-6 transition-all duration-300 ease-in-out bg-primary ${
                 isOpen ? "opacity-0" : ""
               }`}
             />
             <span
-              className={`block h-[2px] w-6 bg-primary transition-all duration-300 ease-in-out ${
+              className={`block h-[2px] w-6 transition-all duration-300 ease-in-out bg-primary ${
                 isOpen ? "-translate-y-[8px] -rotate-45" : ""
               }`}
             />
@@ -96,13 +121,13 @@ export default function Navbar() {
           }`}
         >
           <div className="overflow-hidden">
-            <nav className="flex flex-col gap-4 px-gutter pb-6 pt-2 border-t border-outline-variant/20">
+            <nav className="flex flex-col gap-4 px-gutter pb-6 pt-2 border-t transition-colors duration-300 border-outline-variant/20 bg-surface text-primary">
               {navigation.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
-                  className="font-medium text-[16px] text-secondary py-2 transition-colors hover:text-primary"
+                  className="font-medium text-[16px] py-2 transition-colors text-secondary hover:text-primary"
                 >
                   {item.label}
                 </a>
@@ -110,7 +135,7 @@ export default function Navbar() {
               <a
                 href="#contact"
                 onClick={() => setIsOpen(false)}
-                className="rounded-full bg-primary px-5 py-3 text-center font-label-md text-label-md text-on-primary transition-opacity hover:opacity-90"
+                className="rounded-full px-5 py-3 text-center font-label-md text-label-md transition-all duration-300 bg-primary text-on-primary hover:bg-neutral-800"
               >
                 Contact
               </a>
@@ -121,4 +146,3 @@ export default function Navbar() {
     </>
   );
 }
-

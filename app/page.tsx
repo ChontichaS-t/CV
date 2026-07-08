@@ -15,12 +15,13 @@ export default function HomePage() {
       <ScrollEffects />
       <Navbar />
       <Hero />
+
       <About />
+      <Skills />
       <Experience />
       <AcademicProjects />
       <Highlights />
       <Extracurriculars />
-      <Skills />
       <Footer />
     </main>
   );

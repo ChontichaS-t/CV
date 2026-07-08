@@ -70,6 +70,31 @@ export default function Hero() {
                 className="h-full w-auto object-contain filter drop-shadow-[-16px_8px_30px_rgba(0,0,0,0.06)]"
                 src="/tong2.png"
               />
+
+              {/* Card 1: Experience */}
+              <div className="absolute top-[20%] -left-[18%] z-30 animate-float-1">
+                <div className="flex flex-row items-center gap-2.5 bg-white/80 backdrop-blur-md border border-orange-500/20 rounded-2xl px-5 py-3.5 shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all duration-300 hover:scale-105 select-none pointer-events-auto">
+                  <span className="text-2xl font-bold text-orange-500 leading-none">4</span>
+                  <span className="text-xs text-black font-bold font-sans whitespace-nowrap">Work Experience</span>
+                </div>
+              </div>
+
+              {/* Card 2: Projects Completed */}
+              <div className="absolute top-[46%] -right-[18%] z-30 animate-float-2">
+                <div className="flex flex-row items-center gap-2.5 bg-white/80 backdrop-blur-md border border-orange-500/20 rounded-2xl px-5 py-3.5 shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all duration-300 hover:scale-105 select-none pointer-events-auto">
+                  <span className="text-2xl font-bold text-orange-500 leading-none">6</span>
+                  <span className="text-xs text-black font-bold font-sans whitespace-nowrap">Projects</span>
+                </div>
+              </div>
+
+              {/* Card 3: Awards */}
+              <div className="absolute bottom-[20%] -left-[10%] z-30 animate-float-3">
+                <div className="flex flex-row items-center gap-2.5 bg-white/80 backdrop-blur-md border border-orange-500/20 rounded-2xl px-5 py-3.5 shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all duration-300 hover:scale-105 select-none pointer-events-auto">
+                  <span className="text-2xl font-bold text-orange-500 leading-none">2</span>
+                  <span className="text-xs text-black font-bold font-sans whitespace-nowrap">Awards</span>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
@@ -85,16 +110,16 @@ export default function Hero() {
           <div className="absolute top-[14%] lg:top-[18%] left-0 z-30 max-w-[750px] flex flex-col gap-6 text-left">
             
             {/* Left-Aligned Standard Name: Chonticha Sukchalee */}
-            <h1 className={`text-[clamp(2.8rem,6vw,4.5rem)] font-bold select-none font-sans text-primary whitespace-nowrap transition-all duration-1000 ease-out transform ${
+            <h1 className={`text-[clamp(2.2rem,4.5vw,3.5rem)] font-bold select-none font-sans whitespace-nowrap transition-all duration-1000 ease-out transform ${
               animate ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
             }`}>
-              Chonticha <span className="text-neutral-500">Sukchalee</span>
+              <span className="text-orange-500">Chonticha</span> <span className="text-black">Sukchalee</span>
             </h1>
 
             {/* Bio & Details */}
             <div className="mt-2 flex flex-col gap-4">
               <div>
-                <p className={`text-primary font-bold tracking-widest uppercase text-lg lg:text-xl mb-3 font-sans transition-all duration-1000 delay-200 ease-out transform ${
+                <p className={`text-orange-500 font-bold tracking-widest uppercase text-lg lg:text-xl mb-3.5 font-sans transition-all duration-1000 delay-200 ease-out transform ${
                   animate ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 }`}>
                   Full Stack Developer Intern
@@ -102,8 +127,15 @@ export default function Hero() {
                 <p className={`text-secondary text-base lg:text-[18px] leading-relaxed font-sans max-w-[520px] transition-all duration-1000 delay-400 ease-out transform ${
                   animate ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 }`}>
-                  I am a Computer Engineering student looking for an internship opportunity in a real-world development environment. I bring a solid engineering foundation and a strong willingness to adapt to the team&apos;s standards and culture.
+                  A Computer Engineering student who enjoys turning ideas into working products, from front-end to back-end. Looking for an internship to apply what I&apos;ve built in the classroom to real production challenges.
                 </p>
+                <div className={`mt-4 transition-all duration-1000 delay-500 ease-out transform ${
+                  animate ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                }`}>
+                  <span className="inline-block px-3 py-1.5 text-black font-semibold border border-orange-500 rounded-full text-xs lg:text-sm">
+                    Available for internship: Oct 2026 – Feb 2027.
+                  </span>
+                </div>
               </div>
             </div>
 
@@ -115,10 +147,10 @@ export default function Hero() {
         <div className="lg:hidden flex flex-col items-center w-full gap-8 py-4">
           
           {/* Mobile Name Logo */}
-          <h1 className={`text-[30px] sm:text-[38px] font-bold select-none text-center font-sans mt-2 text-primary whitespace-nowrap transition-all duration-1000 ease-out transform ${
+          <h1 className={`text-[24px] sm:text-[30px] font-bold select-none text-center font-sans mt-2 whitespace-nowrap transition-all duration-1000 ease-out transform ${
             animate ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
           }`}>
-            Chonticha <span className="text-neutral-500">Sukchalee</span>
+            <span className="text-orange-500">Chonticha</span> <span className="text-black">Sukchalee</span>
           </h1>
 
           {/* Centered Image (Mobile) */}
@@ -130,12 +162,36 @@ export default function Hero() {
               className="h-full w-auto object-contain filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.06)]"
               src="/tong2.png"
             />
+
+            {/* Card 1: Experience */}
+            <div className="absolute top-[8%] -left-[14%] z-30 scale-[0.75] origin-top-left animate-float-1">
+              <div className="flex flex-row items-center gap-2 bg-white/85 backdrop-blur-md border border-orange-500/20 rounded-2xl px-4 py-2.5 shadow-[0_8px_30px_rgb(0,0,0,0.08)] select-none pointer-events-auto">
+                <span className="text-xl font-bold text-orange-500 leading-none">4</span>
+                <span className="text-[9px] text-black font-bold font-sans whitespace-nowrap">Work Experience</span>
+              </div>
+            </div>
+
+            {/* Card 2: Projects Completed */}
+            <div className="absolute top-[40%] -right-[16%] z-30 scale-[0.75] origin-top-right animate-float-2">
+              <div className="flex flex-row items-center gap-2 bg-white/85 backdrop-blur-md border border-orange-500/20 rounded-2xl px-4 py-2.5 shadow-[0_8px_30px_rgb(0,0,0,0.08)] select-none pointer-events-auto">
+                <span className="text-xl font-bold text-orange-500 leading-none">6</span>
+                <span className="text-[9px] text-black font-bold font-sans whitespace-nowrap">Projects</span>
+              </div>
+            </div>
+
+            {/* Card 3: Awards */}
+            <div className="absolute bottom-[10%] -left-[6%] z-30 scale-[0.75] origin-bottom-left animate-float-3">
+              <div className="flex flex-row items-center gap-2 bg-white/85 backdrop-blur-md border border-orange-500/20 rounded-2xl px-4 py-2.5 shadow-[0_8px_30px_rgb(0,0,0,0.08)] select-none pointer-events-auto">
+                <span className="text-xl font-bold text-orange-500 leading-none">2</span>
+                <span className="text-[9px] text-black font-bold font-sans whitespace-nowrap">Awards</span>
+              </div>
+            </div>
           </div>
 
           {/* Mobile Info & Content */}
           <div className="flex flex-col items-center gap-6 px-4 text-center z-20">
             <div className="max-w-[480px]">
-              <p className={`text-primary font-bold tracking-wider uppercase text-base sm:text-lg mb-3 font-sans transition-all duration-1000 delay-500 ease-out transform ${
+              <p className={`text-orange-500 font-bold tracking-wider uppercase text-base sm:text-lg mb-3.5 font-sans transition-all duration-1000 delay-500 ease-out transform ${
                 animate ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}>
                 Full Stack Developer Intern
@@ -143,8 +199,15 @@ export default function Hero() {
               <p className={`text-secondary text-sm sm:text-base leading-relaxed transition-all duration-1000 delay-600 ease-out transform ${
                 animate ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}>
-                I am a Computer Engineering student looking for an internship opportunity in a real-world development environment. I bring a solid engineering foundation and a strong willingness to adapt to the team&apos;s standards and culture.
+                A Computer Engineering student who enjoys turning ideas into working products, from front-end to back-end. Looking for an internship to apply what I&apos;ve built in the classroom to real production challenges.
               </p>
+              <div className={`mt-4 transition-all duration-1000 delay-650 ease-out transform ${
+                animate ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}>
+                <span className="inline-block px-3 py-1.5 text-black font-semibold border border-orange-500 rounded-full text-[11px] sm:text-xs">
+                  Available for internship: Oct 2026 – Feb 2027.
+                </span>
+              </div>
             </div>
 
           </div>

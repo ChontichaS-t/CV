@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 export default function ScrollEffects() {
   useEffect(() => {
-    const sections = Array.from(document.querySelectorAll<HTMLElement>("section"));
+    const sections = Array.from(document.querySelectorAll<HTMLElement>("section:not(#about)"));
     sections.forEach((section) => section.classList.add("reveal"));
 
     const observer = new IntersectionObserver(

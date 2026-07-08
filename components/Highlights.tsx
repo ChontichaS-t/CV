@@ -165,7 +165,7 @@ export default function Highlights() {
         <div className="mx-auto max-w-container-max px-gutter">
           <div className="mb-16 flex items-end justify-between gap-6">
             <div>
-              <h2 className="font-headline-lg text-headline-lg text-primary">Awards & Highlights</h2>
+              <h2 className="font-headline-lg text-headline-lg text-primary">Awards</h2>
             </div>
           </div>
 

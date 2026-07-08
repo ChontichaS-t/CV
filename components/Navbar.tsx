@@ -3,18 +3,76 @@
 import { useState, useEffect } from "react";
 
 const navigation = [
-  { label: "About", href: "#about" },
+  { label: "About Me", href: "#about" },
+  { label: "Skills", href: "#skills" },
   { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
   { label: "Extracurriculars", href: "#extracurriculars" },
-  { label: "Skills", href: "#skills" },
-  { label: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [isContactOpen, setIsContactOpen] = useState(false);
+  const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
+
+  const contactItems = [
+    {
+      label: "Gmail",
+      display: "chontichas.contact@gmail.com",
+      copyValue: "chontichas.contact@gmail.com",
+      link: "mailto:chontichas.contact@gmail.com",
+      icon: (
+        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+        </svg>
+      ),
+    },
+    {
+      label: "Phone",
+      display: "081-491-2676",
+      copyValue: "0814912676",
+      link: "tel:0814912676",
+      icon: (
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+        </svg>
+      ),
+    },
+    {
+      label: "Facebook",
+      display: "Chonticha Sukchalee",
+      copyValue: "https://www.facebook.com/chonticha.sukchalee?locale=th_TH",
+      link: "https://www.facebook.com/chonticha.sukchalee?locale=th_TH",
+      target: "_blank",
+      icon: (
+        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+        </svg>
+      ),
+    },
+  ];
+
+  const handleCopy = (text: string, index: number) => {
+    navigator.clipboard.writeText(text).then(() => {
+      setCopiedIndex(index);
+      setTimeout(() => setCopiedIndex(null), 2000);
+    });
+  };
+
+  // Close contact dropdown on click outside
+  useEffect(() => {
+    if (!isContactOpen) return;
+    const handleOutsideClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest(".contact-dropdown-container")) {
+        setIsContactOpen(false);
+      }
+    };
+    window.addEventListener("click", handleOutsideClick);
+    return () => window.removeEventListener("click", handleOutsideClick);
+  }, [isContactOpen]);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -82,17 +140,20 @@ export default function Navbar() {
         }`}
       >
         <div className="mx-auto flex h-16 max-w-container-max items-center justify-between px-gutter">
-          <a
-            href="#top"
-            className={`transition-all duration-300 select-none font-bold uppercase tracking-widest text-[13px] sm:text-[15px] lg:text-[17px] hover:opacity-85 ${
-              isDarkTheme ? "text-white" : "text-primary"
-            }`}
-          >
-            CHONTICHA SUKCHALEE
-          </a>
+          {/* Left: Logo */}
+          <div className="flex-1 flex justify-start">
+            <a
+              href="#top"
+              className={`transition-all duration-300 select-none font-bold uppercase tracking-widest text-[13px] sm:text-[15px] lg:text-[17px] hover:opacity-85 ${
+                isDarkTheme ? "text-white" : "text-primary"
+              }`}
+            >
+              CHONTICHA SUKCHALEE
+            </a>
+          </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden items-center gap-stack-md md:flex">
+          {/* Center: Desktop Navigation */}
+          <nav className="hidden items-center gap-5 lg:gap-8 md:flex">
             {navigation.map((item) => (
               <a
                 key={item.href}
@@ -106,41 +167,109 @@ export default function Navbar() {
                 {item.label}
               </a>
             ))}
-            <a
-              href="#contact"
-              className={`rounded-full px-6 py-2.5 font-label-md text-label-md transition-all duration-300 hover:scale-105 ${
-                isDarkTheme
-                  ? "bg-white text-black hover:bg-neutral-200"
-                  : "bg-primary text-on-primary hover:bg-neutral-800"
-              }`}
-            >
-              Contact
-            </a>
           </nav>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="flex h-10 w-10 flex-col items-center justify-center gap-[6px] rounded-full transition-colors md:hidden focus:outline-none z-50 hover:bg-surface-container"
-            aria-expanded={isOpen}
-            aria-label="Toggle menu"
-          >
-            <span
-              className={`block h-[2px] w-6 transition-all duration-300 ease-in-out ${
-                isDarkTheme ? "bg-white" : "bg-primary"
-              } ${isOpen ? "translate-y-[8px] rotate-45" : ""}`}
-            />
-            <span
-              className={`block h-[2px] w-6 transition-all duration-300 ease-in-out ${
-                isDarkTheme ? "bg-white" : "bg-primary"
-              } ${isOpen ? "opacity-0" : ""}`}
-            />
-            <span
-              className={`block h-[2px] w-6 transition-all duration-300 ease-in-out ${
-                isDarkTheme ? "bg-white" : "bg-primary"
-              } ${isOpen ? "-translate-y-[8px] -rotate-45" : ""}`}
-            />
-          </button>
+          {/* Right: Actions */}
+          <div className="flex-1 flex justify-end items-center gap-4">
+            <div className="relative contact-dropdown-container">
+              <button
+                onClick={() => setIsContactOpen(!isContactOpen)}
+                className="hidden md:inline-block rounded-full px-6 py-2.5 font-label-md text-label-md transition-all duration-300 hover:scale-105 bg-orange-500 text-white hover:bg-orange-600 focus:outline-none cursor-pointer"
+              >
+                Contact
+              </button>
+
+              {/* Dropdown Menu */}
+              {isContactOpen && (
+                <div className={`absolute right-0 md:-right-16 lg:-right-32 xl:-right-40 mt-3 w-[280px] rounded-2xl p-2.5 shadow-xl border backdrop-blur-md transition-all duration-300 z-50 flex flex-col gap-1 ${
+                  isDarkTheme 
+                    ? "bg-black/95 text-white border-white/10" 
+                    : "bg-white/95 text-primary border-outline-variant/20 shadow-[0_8px_30px_rgba(0,0,0,0.12)]"
+                }`}>
+                  {contactItems.map((item, idx) => (
+                    <div 
+                      key={item.label} 
+                      className={`flex items-center justify-between gap-2 p-2 rounded-xl transition-colors ${
+                        isDarkTheme ? "hover:bg-white/5" : "hover:bg-neutral-100"
+                      }`}
+                    >
+                      <a
+                        href={item.link}
+                        target={item.target || "_self"}
+                        rel={item.target === "_blank" ? "noopener noreferrer" : undefined}
+                        className="flex items-center gap-3 flex-1 min-w-0"
+                      >
+                        <div className={`flex items-center justify-center w-8 h-8 rounded-lg shrink-0 ${
+                          isDarkTheme 
+                            ? "bg-white/10 text-orange-400" 
+                            : "bg-orange-500/10 text-orange-500"
+                        }`}>
+                          {item.icon}
+                        </div>
+                        <div className="flex flex-col min-w-0 text-left">
+                          <span className={`text-[9px] uppercase tracking-wider font-semibold ${
+                            isDarkTheme ? "text-neutral-500" : "text-neutral-400"
+                          }`}>
+                            {item.label}
+                          </span>
+                          <span className="text-xs font-semibold truncate leading-tight mt-0.5">
+                            {item.display}
+                          </span>
+                        </div>
+                      </a>
+                      
+                      <button
+                        onClick={() => handleCopy(item.copyValue, idx)}
+                        className={`p-1.5 rounded-lg border transition-all duration-200 shrink-0 cursor-pointer ${
+                          copiedIndex === idx
+                            ? "bg-green-500/10 border-green-500/20 text-green-500"
+                            : (isDarkTheme 
+                                ? "border-transparent text-neutral-500 hover:text-white hover:bg-white/5" 
+                                : "border-transparent text-neutral-400 hover:text-primary hover:bg-neutral-100")
+                        }`}
+                        title="Copy to clipboard"
+                      >
+                        {copiedIndex === idx ? (
+                          <svg className="w-3.5 h-3.5 text-green-500" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <polyline points="20 6 9 17 4 12" />
+                          </svg>
+                        ) : (
+                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                            <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                          </svg>
+                        )}
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="flex h-10 w-10 flex-col items-center justify-center gap-[6px] rounded-full transition-colors md:hidden focus:outline-none z-50 hover:bg-surface-container"
+              aria-expanded={isOpen}
+              aria-label="Toggle menu"
+            >
+              <span
+                className={`block h-[2px] w-6 transition-all duration-300 ease-in-out ${
+                  isDarkTheme ? "bg-white" : "bg-primary"
+                } ${isOpen ? "translate-y-[8px] rotate-45" : ""}`}
+              />
+              <span
+                className={`block h-[2px] w-6 transition-all duration-300 ease-in-out ${
+                  isDarkTheme ? "bg-white" : "bg-primary"
+                } ${isOpen ? "opacity-0" : ""}`}
+              />
+              <span
+                className={`block h-[2px] w-6 transition-all duration-300 ease-in-out ${
+                  isDarkTheme ? "bg-white" : "bg-primary"
+                } ${isOpen ? "-translate-y-[8px] -rotate-45" : ""}`}
+              />
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation Dropdown */}
@@ -169,17 +298,79 @@ export default function Navbar() {
                   {item.label}
                 </a>
               ))}
-              <a
-                href="#contact"
-                onClick={() => setIsOpen(false)}
-                className={`rounded-full px-5 py-3 text-center font-label-md text-label-md transition-all duration-300 ${
-                  isDarkTheme
-                    ? "bg-white text-black hover:bg-neutral-200"
-                    : "bg-primary text-on-primary hover:bg-neutral-800"
-                }`}
-              >
-                Contact
-              </a>
+              <div className="flex flex-col gap-2">
+                <button
+                  onClick={() => setIsContactOpen(!isContactOpen)}
+                  className="rounded-full px-5 py-3 text-center font-label-md text-label-md transition-all duration-300 bg-orange-500 text-white hover:bg-orange-600 focus:outline-none cursor-pointer"
+                >
+                  Contact
+                </button>
+                {isContactOpen && (
+                  <div className={`mt-2 rounded-2xl p-2.5 border backdrop-blur-md flex flex-col gap-1.5 ${
+                    isDarkTheme 
+                      ? "bg-black/95 text-white border-white/10" 
+                      : "bg-white/95 text-primary border-outline-variant/20 shadow-sm"
+                  }`}>
+                    {contactItems.map((item, idx) => (
+                      <div 
+                        key={item.label} 
+                        className={`flex items-center justify-between gap-2 p-2 rounded-xl transition-colors ${
+                          isDarkTheme ? "hover:bg-white/5" : "hover:bg-neutral-100"
+                        }`}
+                      >
+                        <a
+                          href={item.link}
+                          target={item.target || "_self"}
+                          rel={item.target === "_blank" ? "noopener noreferrer" : undefined}
+                          className="flex items-center gap-3 flex-1 min-w-0"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          <div className={`flex items-center justify-center w-8 h-8 rounded-lg shrink-0 ${
+                            isDarkTheme 
+                              ? "bg-white/10 text-orange-400" 
+                              : "bg-orange-500/10 text-orange-500"
+                          }`}>
+                            {item.icon}
+                          </div>
+                          <div className="flex flex-col min-w-0 text-left">
+                            <span className={`text-[9px] uppercase tracking-wider font-semibold ${
+                              isDarkTheme ? "text-neutral-500" : "text-neutral-400"
+                            }`}>
+                              {item.label}
+                            </span>
+                            <span className="text-xs font-semibold truncate leading-tight mt-0.5">
+                              {item.display}
+                            </span>
+                          </div>
+                        </a>
+                        
+                        <button
+                          onClick={() => handleCopy(item.copyValue, idx)}
+                          className={`p-1.5 rounded-lg border transition-all duration-200 shrink-0 cursor-pointer ${
+                            copiedIndex === idx
+                              ? "bg-green-500/10 border-green-500/20 text-green-500"
+                              : (isDarkTheme 
+                                  ? "border-transparent text-neutral-500 hover:text-white hover:bg-white/5" 
+                                  : "border-transparent text-neutral-400 hover:text-primary hover:bg-neutral-100")
+                          }`}
+                          title="Copy to clipboard"
+                        >
+                          {copiedIndex === idx ? (
+                            <svg className="w-3.5 h-3.5 text-green-500" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                          ) : (
+                            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                              <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                            </svg>
+                          )}
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </nav>
           </div>
         </div>

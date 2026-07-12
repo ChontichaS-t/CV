@@ -158,7 +158,7 @@ export default function Hero() {
             />
 
             {/* Card 1: Experience */}
-            <div className="absolute top-[8%] -left-[14%] z-30 scale-[0.75] origin-top-left animate-float-1">
+            <div className="absolute top-[8%] -left-[4%] z-30 scale-[0.75] origin-top-left animate-float-1">
               <div className="flex flex-row items-center gap-2 bg-white/85 backdrop-blur-md border border-orange-500/20 rounded-2xl px-4 py-2.5 shadow-[0_8px_30px_rgb(0,0,0,0.08)] select-none pointer-events-auto">
                 <span className="text-xl font-bold text-orange-500 leading-none">4</span>
                 <span className="text-[9px] text-black font-bold font-sans whitespace-nowrap">Work Experience</span>
@@ -166,15 +166,15 @@ export default function Hero() {
             </div>
 
             {/* Card 2: Projects Completed */}
-            <div className="absolute top-[40%] -right-[16%] z-30 scale-[0.75] origin-top-right animate-float-2">
+            <div className="absolute top-[40%] -right-[4%] z-30 scale-[0.75] origin-top-right animate-float-2">
               <div className="flex flex-row items-center gap-2 bg-white/85 backdrop-blur-md border border-orange-500/20 rounded-2xl px-4 py-2.5 shadow-[0_8px_30px_rgb(0,0,0,0.08)] select-none pointer-events-auto">
                 <span className="text-xl font-bold text-orange-500 leading-none">6</span>
-                <span className="text-[9px] text-black font-bold font-sans whitespace-nowrap">Projects</span>
+                <span className="text-[9px] text-black font-bold font-sans whitespace-nowrap">Academic Projects</span>
               </div>
             </div>
 
             {/* Card 3: Awards */}
-            <div className="absolute bottom-[10%] -left-[6%] z-30 scale-[0.75] origin-bottom-left animate-float-3">
+            <div className="absolute bottom-[10%] left-[2%] z-30 scale-[0.75] origin-bottom-left animate-float-3">
               <div className="flex flex-row items-center gap-2 bg-white/85 backdrop-blur-md border border-orange-500/20 rounded-2xl px-4 py-2.5 shadow-[0_8px_30px_rgb(0,0,0,0.08)] select-none pointer-events-auto">
                 <span className="text-xl font-bold text-orange-500 leading-none">2</span>
                 <span className="text-[9px] text-black font-bold font-sans whitespace-nowrap">Awards</span>

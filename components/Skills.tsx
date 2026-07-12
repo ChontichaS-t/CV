@@ -154,7 +154,7 @@ export default function Skills() {
 
   return (
     <section ref={sectionRef} id="skills" className="mx-auto max-w-container-max px-gutter py-stack-lg border-b border-outline-variant/10">
-      <h2 className="font-headline-lg text-headline-lg mb-12 text-primary">Technical Skills & Technologies</h2>
+      <h2 className="font-headline-lg text-headline-lg mb-12 text-primary">Technical Skills</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-6">
         {skillGroups.map((group, index) => {
           // 3 cards on the top row, 2 cards on the bottom row (centered) on desktop (md: grid-cols-6)

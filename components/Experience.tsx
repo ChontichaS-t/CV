@@ -132,29 +132,22 @@ export default function Experience() {
     return () => clearInterval(interval);
   }, [activeIdx, activeExp.images.length]);
 
-  // Scroll to active card on mobile viewport when it expands
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    
-    const handleScroll = () => {
-      if (window.innerWidth < 1024) {
-        const element = document.getElementById(`exp-card-${activeIdx}`);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      }
-    };
-
-    const timer = setTimeout(handleScroll, 100);
-    return () => clearTimeout(timer);
-  }, [activeIdx]);
-
   const handleExpChange = (idx: number) => {
     setIsTransitioning(true);
     setTimeout(() => {
       setActiveIdx(idx);
       setActiveImgIdx(0);
       setIsTransitioning(false);
+      
+      // Smooth scroll to card on mobile only when clicked
+      if (typeof window !== "undefined" && window.innerWidth < 1024) {
+        setTimeout(() => {
+          const element = document.getElementById(`exp-card-${idx}`);
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }, 100);
+      }
     }, 200);
   };
 

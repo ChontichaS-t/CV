@@ -24,9 +24,7 @@ export default function Navbar() {
       copyValue: "chontichas.contact@gmail.com",
       link: "mailto:chontichas.contact@gmail.com",
       icon: (
-        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-        </svg>
+        <img src="/logo/Contact/icons8-gmail-480.png" alt="Gmail" className="w-4 h-4 object-contain" />
       ),
     },
     {
@@ -35,9 +33,7 @@ export default function Navbar() {
       copyValue: "0814912676",
       link: "tel:0814912676",
       icon: (
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-        </svg>
+        <img src="/logo/Contact/icons8-phone-250.png" alt="Phone" className="w-4 h-4 object-contain" />
       ),
     },
     {
@@ -47,9 +43,7 @@ export default function Navbar() {
       link: "https://www.facebook.com/chonticha.sukchalee?locale=th_TH",
       target: "_blank",
       icon: (
-        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-        </svg>
+        <img src="/logo/Contact/icons8-facebook-480.png" alt="Facebook" className="w-4 h-4 object-contain" />
       ),
     },
   ];
@@ -199,13 +193,7 @@ export default function Navbar() {
                         rel={item.target === "_blank" ? "noopener noreferrer" : undefined}
                         className="flex items-center gap-3 flex-1 min-w-0"
                       >
-                        <div className={`flex items-center justify-center w-8 h-8 rounded-lg shrink-0 ${
-                          isDarkTheme 
-                            ? "bg-white/10 text-orange-400" 
-                            : "bg-orange-500/10 text-orange-500"
-                        }`}>
-                          {item.icon}
-                        </div>
+                        {item.icon}
                         <div className="flex flex-col min-w-0 text-left">
                           <span className={`text-[9px] uppercase tracking-wider font-semibold ${
                             isDarkTheme ? "text-neutral-500" : "text-neutral-400"
@@ -325,13 +313,7 @@ export default function Navbar() {
                           className="flex items-center gap-3 flex-1 min-w-0"
                           onClick={() => setIsOpen(false)}
                         >
-                          <div className={`flex items-center justify-center w-8 h-8 rounded-lg shrink-0 ${
-                            isDarkTheme 
-                              ? "bg-white/10 text-orange-400" 
-                              : "bg-orange-500/10 text-orange-500"
-                          }`}>
-                            {item.icon}
-                          </div>
+                          {item.icon}
                           <div className="flex flex-col min-w-0 text-left">
                             <span className={`text-[9px] uppercase tracking-wider font-semibold ${
                               isDarkTheme ? "text-neutral-500" : "text-neutral-400"

@@ -38,7 +38,7 @@ export default function About() {
               <div className="relative z-10 w-full h-auto pointer-events-none">
                 {/* Masked Image to apply the bottom fade gradient mask */}
                 <img
-                  src="/tong6.jpg"
+                  src="/chonticha.jpg"
                   alt="Chonticha Sukchalee Portrait"
                   className="w-full h-auto object-contain transition-transform duration-700 hover:scale-105 pointer-events-auto"
                 />
@@ -122,7 +122,7 @@ export default function About() {
 
                 {/* Main Download Button */}
                 <a
-                  href="/Chonticha_CV.pdf"
+                  href="/cv/cv.pdf"
                   download="Chonticha_CV.pdf"
                   className="relative z-10 rounded-xl px-6 py-3.5 font-semibold text-sm transition-all duration-300 bg-orange-500 text-white hover:bg-orange-600 flex items-center gap-2.5 shadow-lg cursor-pointer"
                 >
@@ -134,7 +134,7 @@ export default function About() {
 
                 {/* Bottom Slide-out (Size) */}
                 <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-[95%] text-center bg-orange-100 text-orange-900 font-medium text-[11px] py-1.5 px-4 rounded-b-lg transition-all duration-300 ease-out opacity-0 -translate-y-2 pointer-events-none group-hover/cv-btn:opacity-100 group-hover/cv-btn:translate-y-[105%] z-0 font-sans whitespace-nowrap">
-                  Size: 185 KB
+                  Size: 2.04 MB
                 </div>
               </div>
 

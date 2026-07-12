@@ -307,27 +307,27 @@ export default function Navbar() {
                 )}
               </div>
 
-              {/* Mobile Menu Button */}
+              {/* Mobile Menu Button (Minimalist 3-line design) */}
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="flex h-10 w-10 flex-col items-center justify-center gap-[6px] rounded-full transition-colors focus:outline-none z-50 hover:bg-surface-container"
+                className="flex h-10 w-10 flex-col items-center justify-center gap-[5px] rounded-full transition-colors focus:outline-none z-50"
                 aria-expanded={isOpen}
                 aria-label="Toggle menu"
               >
                 <span
-                  className={`block h-[2px] w-6 transition-all duration-300 ease-in-out ${
+                  className={`block h-[1.5px] w-5 transition-all duration-300 ease-in-out ${
                     isDarkTheme ? "bg-white" : "bg-primary"
-                  } ${isOpen ? "translate-y-[8px] rotate-45" : ""}`}
+                  } ${isOpen ? "translate-y-[6.5px] rotate-45" : ""}`}
                 />
                 <span
-                  className={`block h-[2px] w-6 transition-all duration-300 ease-in-out ${
+                  className={`block h-[1.5px] w-5 transition-all duration-300 ease-in-out ${
                     isDarkTheme ? "bg-white" : "bg-primary"
                   } ${isOpen ? "opacity-0" : ""}`}
                 />
                 <span
-                  className={`block h-[2px] w-6 transition-all duration-300 ease-in-out ${
+                  className={`block h-[1.5px] w-5 transition-all duration-300 ease-in-out ${
                     isDarkTheme ? "bg-white" : "bg-primary"
-                  } ${isOpen ? "-translate-y-[8px] -rotate-45" : ""}`}
+                  } ${isOpen ? "-translate-y-[6.5px] -rotate-45" : ""}`}
                 />
               </button>
             </div>

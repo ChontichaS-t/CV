@@ -122,7 +122,7 @@ export default function Hero() {
                 <p className={`text-orange-500 font-bold tracking-widest uppercase text-lg lg:text-xl mb-3.5 font-sans transition-all duration-1000 delay-200 ease-out transform ${
                   animate ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 }`}>
-                  Full Stack Developer Intern
+                  Full Stack Developer
                 </p>
                 <p className={`text-secondary text-base lg:text-[18px] leading-relaxed font-sans max-w-[520px] transition-all duration-1000 delay-400 ease-out transform ${
                   animate ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
@@ -133,7 +133,7 @@ export default function Hero() {
                   animate ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 }`}>
                   <span className="inline-block px-3 py-1.5 text-black font-semibold border border-orange-500 rounded-full text-xs lg:text-sm">
-                    Available for internship: Oct 2026 – Feb 2027.
+                    Available for internship: Oct 2026 – Jan 2027.
                   </span>
                 </div>
               </div>
@@ -146,20 +146,14 @@ export default function Hero() {
         {/* Mobile & Tablet Layout (Responsive Stack) */}
         <div className="lg:hidden flex flex-col items-center w-full gap-8 py-4">
           
-          {/* Mobile Name Logo */}
-          <h1 className={`text-[24px] sm:text-[30px] font-bold select-none text-center font-sans mt-2 whitespace-nowrap transition-all duration-1000 ease-out transform ${
-            animate ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
-          }`}>
-            <span className="text-orange-500">Chonticha</span> <span className="text-black">Sukchalee</span>
-          </h1>
-
           {/* Centered Image (Mobile) */}
           <div className={`w-full max-w-[320px] sm:max-w-[380px] h-[320px] sm:h-[380px] flex justify-center items-end relative z-10 transition-all duration-1000 delay-300 ease-out transform ${
             animate ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 translate-y-4"
           }`}>
+
             <img
               alt="Portrait of Chonticha"
-              className="h-full w-auto object-contain filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.06)]"
+              className="h-full w-auto object-contain filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.06)] portrait-fade"
               src="/tong2.png"
             />
 
@@ -191,10 +185,17 @@ export default function Hero() {
           {/* Mobile Info & Content */}
           <div className="flex flex-col items-center gap-6 px-4 text-center z-20">
             <div className="max-w-[480px]">
+              {/* Mobile Name Logo */}
+              <h1 className={`text-[24px] sm:text-[30px] font-bold select-none text-center font-sans mb-1.5 whitespace-nowrap transition-all duration-1000 ease-out transform ${
+                animate ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
+              }`}>
+                <span className="text-orange-500">Chonticha</span> <span className="text-black">Sukchalee</span>
+              </h1>
+
               <p className={`text-orange-500 font-bold tracking-wider uppercase text-base sm:text-lg mb-3.5 font-sans transition-all duration-1000 delay-500 ease-out transform ${
                 animate ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}>
-                Full Stack Developer Intern
+                Full Stack Developer
               </p>
               <p className={`text-secondary text-sm sm:text-base leading-relaxed transition-all duration-1000 delay-600 ease-out transform ${
                 animate ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
@@ -205,7 +206,7 @@ export default function Hero() {
                 animate ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}>
                 <span className="inline-block px-3 py-1.5 text-black font-semibold border border-orange-500 rounded-full text-[11px] sm:text-xs">
-                  Available for internship: Oct 2026 – Feb 2027.
+                  Available for internship: Oct 2026 – Jan 2027.
                 </span>
               </div>
             </div>

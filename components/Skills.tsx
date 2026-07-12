@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect, useRef } from "react";
 
 interface SkillItem {
   name: string;
@@ -100,8 +102,6 @@ const skillGroups: SkillGroup[] = [
       { name: "Git", logo: "/logo/Tools & Networking/git.svg" },
       { name: "GitHub", logo: "/logo/Tools & Networking/github_light.svg" },
       { name: "Figma", logo: "/logo/Tools & Networking/figma.svg" },
-      { name: "IntelliJ IDEA", logo: "/logo/Tools & Networking/intellijidea.svg" },
-      { name: "WebStorm", logo: "/logo/Tools & Networking/webstorm.svg" },
       { name: "Postman", logo: "/logo/Tools & Networking/postman.svg" },
       { name: "Draw.io", logo: "/logo/Tools & Networking/draw-io.png" },
       { name: "Cisco VLAN", logo: "/logo/Tools & Networking/cisco.png" },
@@ -112,45 +112,109 @@ const skillGroups: SkillGroup[] = [
 ];
 
 export default function Skills() {
+  const [visible, setVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+    return () => observer.disconnect();
+  }, []);
+
+  const renderSkill = (skill: SkillItem) => (
+    <li key={skill.name} className="flex items-center gap-2.5 hover:text-primary transition-colors duration-150">
+      {skill.logo ? (
+        <img 
+          src={skill.logo} 
+          alt={`${skill.name} logo`} 
+          className="w-5 h-5 object-contain shrink-0 select-none" 
+        />
+      ) : (
+        <span 
+          style={{ 
+            backgroundColor: `${skill.color}15`, 
+            color: skill.color,
+            borderColor: `${skill.color}30`
+          }}
+          className="w-8.5 h-5 rounded-md flex items-center justify-center text-[8.5px] font-extrabold shrink-0 border select-none font-sans"
+        >
+          {skill.badge}
+        </span>
+      )}
+      <span className="text-[14px] font-medium leading-none">{skill.name}</span>
+    </li>
+  );
+
   return (
-    <section id="skills" className="mx-auto max-w-container-max px-gutter py-stack-lg">
+    <section ref={sectionRef} id="skills" className="mx-auto max-w-container-max px-gutter py-stack-lg border-b border-outline-variant/10">
       <h2 className="font-headline-lg text-headline-lg mb-12 text-primary">Technical Skills & Technologies</h2>
-      <div className="grid gap-8 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
-        {skillGroups.map((group) => (
-          <div key={group.title}>
-            <div className="flex items-center gap-2 mb-4">
-              {group.icon}
-              <h4 className="font-label-md text-label-md uppercase tracking-wider text-primary font-bold">
-                {group.title}
-              </h4>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-6">
+        {skillGroups.map((group, index) => {
+          // 3 cards on the top row, 2 cards on the bottom row (centered) on desktop (md: grid-cols-6)
+          let gridClasses = "col-span-1 sm:col-span-1 md:col-span-2";
+          if (index === 3) {
+            gridClasses += " md:col-start-2";
+          } else if (index === 4) {
+            gridClasses += " sm:col-span-2 md:col-span-2";
+          }
+
+          // Staggered animation delays for the cards
+          const delays = [
+            "delay-[100ms]",
+            "delay-[200ms]",
+            "delay-[300ms]",
+            "delay-[400ms]",
+            "delay-[500ms]"
+          ];
+          const delayClass = delays[index] || "";
+
+          return (
+            <div
+              key={group.title}
+              className={`${gridClasses} p-6 rounded-2xl bg-surface-container-low border border-outline-variant/10 hover:bg-surface-container-lowest hover:shadow-soft hover:border-orange-500/25 hover:-translate-y-2 transition-all duration-700 ease-out transform ${delayClass} ${
+                visible ? "opacity-100 scale-100" : "opacity-0 scale-75"
+              } flex flex-col`}
+            >
+              <div className="flex items-center gap-2.5 border-b border-outline-variant/10 pb-4 mb-4">
+                {group.icon}
+                <h3 className="font-semibold text-[17px] text-primary">
+                  {group.title}
+                </h3>
+              </div>
+              
+              {group.title === "Languages" || group.title === "Tools & Networking" ? (
+                <div className="grid grid-cols-2 gap-x-6 gap-y-3">
+                  <ul className="space-y-3 font-body-md text-secondary">
+                    {group.skills.slice(0, 4).map(renderSkill)}
+                  </ul>
+                  <ul className="space-y-3 font-body-md text-secondary">
+                    {group.skills.slice(4).map(renderSkill)}
+                  </ul>
+                </div>
+              ) : group.title === "Database & Devops" ? (
+                <div className="grid grid-cols-2 gap-x-6 gap-y-3">
+                  <ul className="space-y-3 font-body-md text-secondary">
+                    {group.skills.slice(0, 5).map(renderSkill)}
+                  </ul>
+                  <ul className="space-y-3 font-body-md text-secondary">
+                    {group.skills.slice(5).map(renderSkill)}
+                  </ul>
+                </div>
+              ) : (
+                <ul className="space-y-3 font-body-md text-secondary">
+                  {group.skills.map(renderSkill)}
+                </ul>
+              )}
             </div>
-            <ul className="space-y-3 font-body-md text-secondary">
-              {group.skills.map((skill) => (
-                <li key={skill.name} className="flex items-center gap-2.5 hover:text-primary transition-colors duration-150">
-                  {skill.logo ? (
-                    <img 
-                      src={skill.logo} 
-                      alt={`${skill.name} logo`} 
-                      className="w-5 h-5 object-contain shrink-0 select-none" 
-                    />
-                  ) : (
-                    <span 
-                      style={{ 
-                        backgroundColor: `${skill.color}15`, 
-                        color: skill.color,
-                        borderColor: `${skill.color}30`
-                      }}
-                      className="w-8.5 h-5 rounded-md flex items-center justify-center text-[8.5px] font-extrabold shrink-0 border select-none font-sans"
-                    >
-                      {skill.badge}
-                    </span>
-                  )}
-                  <span className="text-[14px] font-medium leading-none">{skill.name}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

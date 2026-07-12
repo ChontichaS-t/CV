@@ -165,15 +165,16 @@ export default function Navbar() {
 
           {/* Right: Actions */}
           <div className="flex-1 flex justify-end items-center gap-4">
-            <div className="relative contact-dropdown-container">
+            {/* Desktop Contact Button */}
+            <div className="hidden md:block relative contact-dropdown-container">
               <button
                 onClick={() => setIsContactOpen(!isContactOpen)}
-                className="hidden md:inline-block rounded-full px-6 py-2.5 font-label-md text-label-md transition-all duration-300 hover:scale-105 bg-orange-500 text-white hover:bg-orange-600 focus:outline-none cursor-pointer"
+                className="rounded-full px-6 py-2.5 font-label-md text-label-md transition-all duration-300 hover:scale-105 bg-orange-500 text-white hover:bg-orange-600 focus:outline-none cursor-pointer"
               >
                 Contact
               </button>
 
-              {/* Dropdown Menu */}
+              {/* Desktop Contact Dropdown Menu */}
               {isContactOpen && (
                 <div className={`absolute right-0 md:-right-16 lg:-right-32 xl:-right-40 mt-3 w-[280px] rounded-2xl p-2.5 shadow-xl border backdrop-blur-md transition-all duration-300 z-50 flex flex-col gap-1 ${
                   isDarkTheme 
@@ -234,70 +235,23 @@ export default function Navbar() {
               )}
             </div>
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="flex h-10 w-10 flex-col items-center justify-center gap-[6px] rounded-full transition-colors md:hidden focus:outline-none z-50 hover:bg-surface-container"
-              aria-expanded={isOpen}
-              aria-label="Toggle menu"
-            >
-              <span
-                className={`block h-[2px] w-6 transition-all duration-300 ease-in-out ${
-                  isDarkTheme ? "bg-white" : "bg-primary"
-                } ${isOpen ? "translate-y-[8px] rotate-45" : ""}`}
-              />
-              <span
-                className={`block h-[2px] w-6 transition-all duration-300 ease-in-out ${
-                  isDarkTheme ? "bg-white" : "bg-primary"
-                } ${isOpen ? "opacity-0" : ""}`}
-              />
-              <span
-                className={`block h-[2px] w-6 transition-all duration-300 ease-in-out ${
-                  isDarkTheme ? "bg-white" : "bg-primary"
-                } ${isOpen ? "-translate-y-[8px] -rotate-45" : ""}`}
-              />
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Navigation Dropdown */}
-        <div
-          className={`grid transition-all duration-300 ease-in-out md:hidden ${
-            isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0 pointer-events-none"
-          }`}
-        >
-          <div className="overflow-hidden">
-            <nav className={`flex flex-col gap-4 px-gutter pb-6 pt-2 border-t transition-colors duration-300 ${
-              isDarkTheme
-                ? "border-white/10 bg-black text-white"
-                : "border-outline-variant/20 bg-surface text-primary"
-            }`}>
-              {navigation.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setIsOpen(false)}
-                  className={`font-medium text-[16px] py-2 transition-colors ${
-                    isDarkTheme
-                      ? "text-neutral-400 hover:text-white"
-                      : "text-secondary hover:text-primary"
-                  }`}
-                >
-                  {item.label}
-                </a>
-              ))}
-              <div className="flex flex-col gap-2">
+            {/* Mobile Actions: Hamburger & Contact Button side-by-side */}
+            <div className="flex md:hidden flex-row items-center gap-3.5 z-50">
+              {/* Mobile Contact Dropdown Button */}
+              <div className="relative contact-dropdown-container">
                 <button
                   onClick={() => setIsContactOpen(!isContactOpen)}
-                  className="rounded-full px-5 py-3 text-center font-label-md text-label-md transition-all duration-300 bg-orange-500 text-white hover:bg-orange-600 focus:outline-none cursor-pointer"
+                  className="rounded-full px-4 py-2 font-label-md text-[11px] font-bold uppercase tracking-wider bg-orange-500 text-white hover:bg-orange-600 focus:outline-none cursor-pointer"
                 >
                   Contact
                 </button>
+
+                {/* Mobile Contact Dropdown Menu */}
                 {isContactOpen && (
-                  <div className={`mt-2 rounded-2xl p-2.5 border backdrop-blur-md flex flex-col gap-1.5 ${
+                  <div className={`absolute right-0 mt-2 w-[245px] rounded-2xl p-2.5 shadow-xl border backdrop-blur-md transition-all duration-300 z-50 flex flex-col gap-1 ${
                     isDarkTheme 
                       ? "bg-black/95 text-white border-white/10" 
-                      : "bg-white/95 text-primary border-outline-variant/20 shadow-sm"
+                      : "bg-white/95 text-primary border-outline-variant/20 shadow-[0_8px_30px_rgba(0,0,0,0.12)]"
                   }`}>
                     {contactItems.map((item, idx) => (
                       <div 
@@ -311,7 +265,6 @@ export default function Navbar() {
                           target={item.target || "_self"}
                           rel={item.target === "_blank" ? "noopener noreferrer" : undefined}
                           className="flex items-center gap-3 flex-1 min-w-0"
-                          onClick={() => setIsOpen(false)}
                         >
                           {item.icon}
                           <div className="flex flex-col min-w-0 text-left">
@@ -353,6 +306,61 @@ export default function Navbar() {
                   </div>
                 )}
               </div>
+
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="flex h-10 w-10 flex-col items-center justify-center gap-[6px] rounded-full transition-colors focus:outline-none z-50 hover:bg-surface-container"
+                aria-expanded={isOpen}
+                aria-label="Toggle menu"
+              >
+                <span
+                  className={`block h-[2px] w-6 transition-all duration-300 ease-in-out ${
+                    isDarkTheme ? "bg-white" : "bg-primary"
+                  } ${isOpen ? "translate-y-[8px] rotate-45" : ""}`}
+                />
+                <span
+                  className={`block h-[2px] w-6 transition-all duration-300 ease-in-out ${
+                    isDarkTheme ? "bg-white" : "bg-primary"
+                  } ${isOpen ? "opacity-0" : ""}`}
+                />
+                <span
+                  className={`block h-[2px] w-6 transition-all duration-300 ease-in-out ${
+                    isDarkTheme ? "bg-white" : "bg-primary"
+                  } ${isOpen ? "-translate-y-[8px] -rotate-45" : ""}`}
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Navigation Dropdown */}
+        <div
+          className={`grid transition-all duration-300 ease-in-out md:hidden ${
+            isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0 pointer-events-none"
+          }`}
+        >
+          <div className="overflow-hidden">
+            <nav className={`flex flex-col gap-4 px-gutter pb-6 pt-2 border-t transition-colors duration-300 ${
+              isDarkTheme
+                ? "border-white/10 bg-black text-white"
+                : "border-outline-variant/20 bg-surface text-primary"
+            }`}>
+              {navigation.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className={`font-medium text-[16px] py-2 transition-colors ${
+                    isDarkTheme
+                      ? "text-neutral-400 hover:text-white"
+                      : "text-secondary hover:text-primary"
+                  }`}
+                >
+                  {item.label}
+                </a>
+              ))}
+              {/* Contact section removed (moved to header top-left) */}
             </nav>
           </div>
         </div>

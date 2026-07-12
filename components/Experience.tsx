@@ -97,7 +97,7 @@ const experiences = [
     shortCompany: "SUT Hospital",
     period: "Feb 2025 - Mar 2025",
     project: null,
-    techStack: ["Desktop Hardware", "System Config", "Documentation", "Network Diagnostics", "OS Deployment"],
+    techStack: [],
     summary: "Managed and maintained comprehensive documentation for organizational computer inventory data.",
     longDescription: "Conducted site surveys and gathered user requirements for a 600-workstation hospital deployment, while managing daily logs and inventory tracking to ensure 100% equipment accuracy.",
     images: [
@@ -333,16 +333,18 @@ export default function Experience() {
                       </p>
 
                       {/* Core Tech Stack Badges */}
-                      <div className="border-t border-neutral-200/60 pt-4">
-                        <span className="font-bold text-neutral-400 uppercase tracking-widest text-[9px] mb-2 block">Core Technologies</span>
-                        <div className="flex flex-wrap gap-1.5">
-                          {exp.techStack.map((tech) => (
-                            <span key={tech} className="rounded-full border border-neutral-200 bg-neutral-50 px-2 py-0.5 text-[9px] font-mono uppercase tracking-tight text-neutral-600">
-                              {tech}
-                            </span>
-                          ))}
+                      {exp.techStack && exp.techStack.length > 0 && (
+                        <div className="border-t border-neutral-200/60 pt-4">
+                          <span className="font-bold text-neutral-400 uppercase tracking-widest text-[9px] mb-2 block">Core Technologies</span>
+                          <div className="flex flex-wrap gap-1.5">
+                            {exp.techStack.map((tech) => (
+                              <span key={tech} className="rounded-full border border-neutral-200 bg-neutral-50 px-2 py-0.5 text-[9px] font-mono uppercase tracking-tight text-neutral-600">
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
                         </div>
-                      </div>
+                      )}
                     </div>
                   </div>
                 )}
@@ -442,16 +444,18 @@ export default function Experience() {
             </p>
 
             {/* Core Tech Stack Badges */}
-            <div className="border-t border-neutral-200/60 pt-6 mb-8">
-              <span className="font-bold text-neutral-400 uppercase tracking-widest text-[9px] mb-2 block">Core Technologies</span>
-              <div className="flex flex-wrap gap-2">
-                {activeExp.techStack.map((tech) => (
-                  <span key={tech} className="rounded-full border border-neutral-200 bg-neutral-50 px-2.5 py-1 text-[10px] font-mono uppercase tracking-tight text-neutral-600">
-                    {tech}
-                  </span>
-                ))}
+            {activeExp.techStack && activeExp.techStack.length > 0 && (
+              <div className="border-t border-neutral-200/60 pt-6 mb-8">
+                <span className="font-bold text-neutral-400 uppercase tracking-widest text-[9px] mb-2 block">Core Technologies</span>
+                <div className="flex flex-wrap gap-2">
+                  {activeExp.techStack.map((tech) => (
+                    <span key={tech} className="rounded-full border border-neutral-200 bg-neutral-50 px-2.5 py-1 text-[10px] font-mono uppercase tracking-tight text-neutral-600">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

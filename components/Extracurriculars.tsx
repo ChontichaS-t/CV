@@ -249,66 +249,68 @@ export default function Extracurriculars() {
   const currentImage = currentActivity && lightbox !== null ? currentActivity.images[lightbox.imageIndex] : null;
 
   return (
-    <section id="extracurriculars" className="bg-surface py-stack-lg border-t border-outline-variant/20">
-      <div className="mx-auto max-w-container-max px-gutter">
-        <div className="mb-12">
-          <h2 className="font-headline-lg text-headline-lg text-primary">Extracurricular Activities</h2>
-        </div>
+    <>
+      <section id="extracurriculars" className="bg-surface py-stack-lg border-t border-outline-variant/20">
+        <div className="mx-auto max-w-container-max px-gutter">
+          <div className="mb-12">
+            <h2 className="font-headline-lg text-headline-lg text-primary">Extracurricular Activities</h2>
+          </div>
 
-        {/* Bento Grid layout with overlay text */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-1 md:gap-1.5">
-          {activities.map((activity, index) => {
-            const isWide = index === 0 || index === 3;
-            return (
-              <article
-                key={activity.title}
-                className={`group relative flex flex-col overflow-hidden bg-black transition-all duration-500 hover:shadow-2xl hover:-translate-y-1 h-[380px] sm:h-[420px] ${
-                  isWide ? "md:col-span-3" : "md:col-span-2"
-                }`}
-              >
-                {/* Image Slider Area (occupies full card background) */}
-                <div className="absolute inset-0 w-full h-full bg-surface-container">
-                  <ImageSlider 
-                    images={activity.images} 
-                    title={activity.title} 
-                    onImageClick={(imgIdx) => {
-                      setLightbox({
-                        activityIndex: index,
-                        imageIndex: imgIdx
-                      });
-                    }}
-                  />
-                </div>
-
-                {/* Dark Gradient Overlay for text readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent pointer-events-none z-10" />
-
-                {/* Text / Info Area (positioned at bottom overlay) */}
-                <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-8 text-white z-10 pointer-events-none">
-                  <div className="mb-3">
-                    <span className="inline-block rounded-md bg-white/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white/95 backdrop-blur-sm">
-                      {activity.role}
-                    </span>
+          {/* Bento Grid layout with overlay text */}
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-1 md:gap-1.5">
+            {activities.map((activity, index) => {
+              const isWide = index === 0 || index === 3;
+              return (
+                <article
+                  key={activity.title}
+                  className={`group relative flex flex-col overflow-hidden bg-black transition-all duration-500 hover:shadow-2xl hover:-translate-y-1 h-[380px] sm:h-[420px] ${
+                    isWide ? "md:col-span-3" : "md:col-span-2"
+                  }`}
+                >
+                  {/* Image Slider Area (occupies full card background) */}
+                  <div className="absolute inset-0 w-full h-full bg-surface-container">
+                    <ImageSlider 
+                      images={activity.images} 
+                      title={activity.title} 
+                      onImageClick={(imgIdx) => {
+                        setLightbox({
+                          activityIndex: index,
+                          imageIndex: imgIdx
+                        });
+                      }}
+                    />
                   </div>
 
-                  <h3 className="font-headline-md text-[20px] sm:text-[22px] font-semibold text-white mb-3 leading-tight">
-                    {activity.title}
-                  </h3>
+                  {/* Dark Gradient Overlay for text readability */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent pointer-events-none z-10" />
 
-                  <p className="font-body-md text-sm text-white/85 leading-relaxed max-w-xl">
-                    {activity.description}
-                  </p>
-                </div>
-              </article>
-            );
-          })}
+                  {/* Text / Info Area (positioned at bottom overlay) */}
+                  <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-8 text-white z-10 pointer-events-none">
+                    <div className="mb-3">
+                      <span className="inline-block rounded-md bg-white/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white/95 backdrop-blur-sm">
+                        {activity.role}
+                      </span>
+                    </div>
+
+                    <h3 className="font-headline-md text-[20px] sm:text-[22px] font-semibold text-white mb-3 leading-tight">
+                      {activity.title}
+                    </h3>
+
+                    <p className="font-body-md text-sm text-white/85 leading-relaxed max-w-xl">
+                      {activity.description}
+                    </p>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      </section>
 
       {/* Lightbox Modal */}
       {lightbox && currentActivity && currentImage && (
         <div 
-          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/90 backdrop-blur-md transition-all duration-300 animate-in fade-in"
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black/90 backdrop-blur-md transition-all duration-300 animate-in fade-in"
           onClick={() => setLightbox(null)}
           onTouchStart={handleLightboxTouchStart}
           onTouchMove={handleLightboxTouchMove}
@@ -397,6 +399,6 @@ export default function Extracurriculars() {
           </div>
         </div>
       )}
-    </section>
+    </>
   );
 }

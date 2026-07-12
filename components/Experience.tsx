@@ -132,6 +132,23 @@ export default function Experience() {
     return () => clearInterval(interval);
   }, [activeIdx, activeExp.images.length]);
 
+  // Scroll to active card on mobile viewport when it expands
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    
+    const handleScroll = () => {
+      if (window.innerWidth < 1024) {
+        const element = document.getElementById(`exp-card-${activeIdx}`);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    };
+
+    const timer = setTimeout(handleScroll, 100);
+    return () => clearTimeout(timer);
+  }, [activeIdx]);
+
   const handleExpChange = (idx: number) => {
     setIsTransitioning(true);
     setTimeout(() => {
@@ -170,7 +187,7 @@ export default function Experience() {
             <div className="absolute left-[8px] top-4 bottom-4 w-[1px] bg-neutral-200/80" />
             
             {experiences.map((exp, idx) => (
-              <div key={exp.role} className="relative flex flex-col w-full items-stretch">
+              <div key={exp.role} id={`exp-card-${idx}`} className="relative flex flex-col w-full items-stretch scroll-mt-28">
                 {/* Switcher Card Row */}
                 <div className="relative flex items-center w-full">
                   {/* Timeline Dot outside the card */}

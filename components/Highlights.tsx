@@ -4,21 +4,22 @@ import { useEffect, useState } from "react";
 
 const awards = [
   {
-    title: "1st Place - R2M Innovation",
+    title: "1st Place - ENGi Research to Market (ENGi R2M)",
+    subtitle: "LumeGrad – AI-Powered Automated Exam Grading System",
     description:
       "National university innovation competition champion for sustainable technology solutions.",
     points: [
       {
-        title: "National Innovation Champion",
-        desc: "Won 1st place in the Research to Market (R2M) competition, validating the business viability of research-based tech."
+        title: "AI Product Conceptualization",
+        desc: "Co-conceptualized \"LumeGrad,\" an AI platform automating objective and subjective exam grading using Multimodal OCR and RAG."
       },
       {
-        title: "Sustainable Solution Development",
-        desc: "Designed and pitched eco-friendly tech solutions solving environmental challenges."
+        title: "Market Analysis",
+        desc: "Conducted TAM/SAM/SOM analysis to target high-potential market opportunities."
       },
       {
-        title: "Market Strategy & Pitching",
-        desc: "Formulated complete commercialization plans and pitched to VCs and corporate leaders."
+        title: "GTM & Value Proposition",
+        desc: "Developed online/offline Go-To-Market strategies and value propositions to position it as a highly accurate and traceable grading solution."
       }
     ],
     accentColor: "from-neutral-900 via-neutral-600 to-neutral-300",
@@ -31,20 +32,25 @@ const awards = [
     ],
   },
   {
-    title: "Hackathon Competitor | C2C TechX Program (Supalai x SUT)",
+    title: "2nd Place - C2C TechX Program (Supalai)",
+    subtitle: "AI Talent Scoring System on an HR Tech Platform",
     description: "C2C showcase images from the public folder.",
     points: [
       {
-        title: "Co-Creation Hackathon",
-        desc: "Participated in an intensive prop-tech hackathon held in partnership with Supalai and SUT."
+        title: "AI Talent Scoring",
+        desc: "Co-conceptualized an automated HR platform to counter resume inflation by evaluating candidates based on verified skills."
       },
       {
-        title: "Smart Living Concepts",
-        desc: "Co-designed smart home and community technologies to improve modern residential experiences."
+        title: "Automated Workflow",
+        desc: "Designed system architecture featuring AI resume screening, technical testing (Python/SQL), and email pipelines."
       },
       {
-        title: "Executive Business Mentorship",
-        desc: "Collaborated with property industry mentors and presented solutions to corporate leadership."
+        title: "Data HR Dashboard",
+        desc: "Developed visual dashboards using interactive charts to rank candidates across Hard and Soft skill metrics."
+      },
+      {
+        title: "Business Pitching",
+        desc: "Conducted market research demonstrating a 45-75% reduction in HR workloads and pitched the solution to executives."
       }
     ],
     accentColor: "from-neutral-800 via-neutral-500 to-neutral-300",
@@ -197,6 +203,11 @@ export default function Highlights() {
                     <h3 className="font-headline-lg text-[26px] md:text-[32px] font-bold text-primary leading-tight">
                       {award.title}
                     </h3>
+                    {award.subtitle && (
+                      <p className="mt-2 text-base font-semibold text-orange-500">
+                        {award.subtitle}
+                      </p>
+                    )}
                     
                     <div className="relative mt-6">
                       {/* Points */}

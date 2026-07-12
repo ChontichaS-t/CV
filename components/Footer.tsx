@@ -7,17 +7,7 @@ export default function Footer() {
           <span className="text-secondary opacity-50">/</span>
           <span className="font-label-md text-label-md text-secondary">© 2024. Built with precision.</span>
         </div>
-        <div className="flex gap-stack-md">
-          <a className="font-label-md text-label-md text-secondary transition-colors hover:text-primary" href="#">
-            GitHub
-          </a>
-          <a className="font-label-md text-label-md text-secondary transition-colors hover:text-primary" href="#">
-            LinkedIn
-          </a>
-          <a className="font-label-md text-label-md text-secondary transition-colors hover:text-primary" href="mailto:hello@example.com">
-            Email
-          </a>
-        </div>
+
       </div>
     </footer>
   );

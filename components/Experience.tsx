@@ -4,10 +4,12 @@ import { useState, useEffect } from "react";
 
 const experiences = [
   {
-    role: "UI/UX",
+    role: "UI/UX & Embedded Software Developer",
     company: "Health Link",
+    shortRole: "UI/UX",
+    shortCompany: "Health Link",
     period: "May 2026 - Present",
-    project: "Care Keeper",
+    project: "HealthLink – Blood Pressure Monitor Software",
     techStack: ["Python", "PySide6", "Raspberry Pi 5", "BLE", "Serial UART", "I2C", "REST API"],
     summary: "Developed a Raspberry Pi healthcare application focused on intuitive UI/UX for patient screening and registration workflows.",
     longDescription: "Integrated hardware peripherals including a Thai ID reader, BP monitor, and BLE SpO₂ sensor, and optimized asynchronous sensor communication using QThread. Built end-to-end API workflows with backend services, with robust error handling and hardware monitoring for Wi-Fi, Bluetooth, and battery status.",
@@ -35,8 +37,10 @@ const experiences = [
   {
     role: "Full-Stack Developer",
     company: "Surasawat Village",
+    shortRole: "Full-Stack Developer",
+    shortCompany: "Surasawat Village",
     period: "May 2025 - Jun 2025",
-    project: "Residential Management & Utility Billing Platform",
+    project: "Water Billing & Residential Payment Management System",
     techStack: ["React", "TypeScript", "Tailwind", "Go (Gin)", "GORM", "SQLite", "Docker", "Cron"],
     summary: "Managed the full SDLC for a residential web application, collaborating with stakeholders to translate requirements.",
     longDescription: "Architected clean-architecture backend services for resident profiles, automated utility billing, and payment tracking dashboards. Implemented automated cron jobs for monthly calculations, generated PDF invoices, and containerized services using Docker Compose.",
@@ -60,10 +64,12 @@ const experiences = [
     }
   },
   {
-    role: "AI System Analyst",
-    company: "Suratech Company",
+    role: "AI System Analyst & Backend Developer",
+    company: "Suratec Company",
+    shortRole: "AI System Analyst",
+    shortCompany: "Suratec Company",
     period: "May 2025 - Jun 2025",
-    project: "AI Health Analytics Backend Platform",
+    project: "AI Foot Pressure Analytics Backend Platform",
     techStack: ["Python", "FastAPI", "OpenAI GPT-4o", "SQLAlchemy", "PostgreSQL", "AWS S3", "JWT"],
     summary: "Developed robust backend RESTful APIs for an AI-powered healthcare analytics platform and operational dashboards.",
     longDescription: "Integrated OpenAI GPT-4o and multilingual voice pipelines via AWS S3 to generate personalized self-care and injury risk assessments. Implemented persistent chat history for text and voice interactions and secured all API endpoints using JWT-based authentication.",
@@ -71,7 +77,7 @@ const experiences = [
       "/tec/tec1.jpg"
     ],
     details: {
-      "Client / Org": "Suratech Company",
+      "Client / Org": "Suratec Company",
       "Release Date": "June 2025",
       "Location": "Cooperative Project",
       "Features": "OpenAI GPT-4o Integration, Voice Pipeline",
@@ -85,13 +91,15 @@ const experiences = [
     }
   },
   {
-    role: "IT Support Assistant",
+    role: "IT Inventory Support",
     company: "Suranaree University of Technology Hospital",
+    shortRole: "IT Inventory Support",
+    shortCompany: "SUT Hospital",
     period: "Feb 2025 - Mar 2025",
     project: null,
     techStack: ["Desktop Hardware", "System Config", "Documentation", "Network Diagnostics", "OS Deployment"],
     summary: "Managed and maintained comprehensive documentation for organizational computer inventory data.",
-    longDescription: "Supported daily IT operations by assisting with the assembly, setup, and configuration of desktop computers across various departments. Managed and maintained computer inventory data and system documentation.",
+    longDescription: "Conducted site surveys and gathered user requirements for a 600-workstation hospital deployment, while managing daily logs and inventory tracking to ensure 100% equipment accuracy.",
     images: [
       "/hp/hp1.jpg",
       "/hp/hp2.jpg",
@@ -222,14 +230,14 @@ export default function Experience() {
                         <span className={`text-[11px] font-bold uppercase tracking-wide truncate transition-colors duration-300 ${
                           idx === activeIdx ? "text-white" : "text-neutral-800 group-hover:text-orange-500"
                         }`}>
-                          {exp.role}
+                          {exp.shortRole || exp.role}
                         </span>
 
                         {/* Company */}
                         <span className={`text-[9px] font-medium uppercase tracking-widest transition-colors duration-300 whitespace-normal leading-relaxed mt-0.5 ${
                           idx === activeIdx ? "text-white/80" : "text-neutral-500"
                         }`}>
-                          {exp.company}
+                          {exp.shortCompany || exp.company}
                         </span>
                       </div>
                     </div>
@@ -300,12 +308,19 @@ export default function Experience() {
                     {/* Details content */}
                     <div className="flex flex-col text-left px-1">
                       {/* Role & Company Header inside expansion */}
-                      <h4 className="font-sans text-[20px] sm:text-[22px] font-bold text-neutral-900 leading-tight mb-0.5">
+                      <h4 className="font-sans text-[17px] sm:text-[20px] font-bold text-neutral-900 leading-tight mb-0.5 whitespace-nowrap">
                         {exp.role}
                       </h4>
-                      <p className="text-neutral-500 font-medium text-[11px] uppercase tracking-wider mb-4">
-                        by <span className="font-bold text-orange-500">{exp.company}</span>
+                      <p className="text-neutral-500 font-medium text-xs sm:text-sm tracking-wider mb-4">
+                        <span className="font-bold text-orange-500">{exp.company}</span>
                       </p>
+
+                      {/* Project Title inside expansion */}
+                      {exp.project && (
+                        <h5 className="font-sans text-sm sm:text-base font-bold text-neutral-900 mb-3">
+                          {exp.project}
+                        </h5>
+                      )}
 
                       {/* Short summary */}
                       <p className="font-sans italic text-sm sm:text-base text-neutral-700 leading-relaxed mb-3">
@@ -344,18 +359,18 @@ export default function Experience() {
             {/* Left Column: Job Title & Company */}
             <div className="flex flex-col">
               {/* Job Title */}
-              <h3 className="font-sans text-[28px] lg:text-[32px] font-bold text-neutral-900 leading-tight mb-1">
+              <h3 className="font-sans text-[28px] lg:text-[32px] font-bold text-neutral-900 leading-tight mb-1 lg:whitespace-nowrap">
                 {activeExp.role}
               </h3>
               
               {/* Company */}
-              <p className="text-neutral-500 font-medium text-xs uppercase tracking-wider">
-                by <span className="font-bold text-orange-500">{activeExp.company}</span>
+              <p className="text-neutral-500 font-medium text-sm sm:text-base tracking-wider">
+                <span className="font-bold text-orange-500">{activeExp.company}</span>
               </p>
             </div>
 
             {/* Right Column: Date Period */}
-            <div className="flex shrink-0 sm:mb-0.5">
+            <div className="flex shrink-0 relative top-3 right-6">
               <span className="text-sm sm:text-base font-bold tracking-wider text-neutral-900 uppercase">
                 {activeExp.period}
               </span>
@@ -409,6 +424,13 @@ export default function Experience() {
 
           {/* Details (Underneath the Image) */}
           <div className={`transition-all duration-300 transform ${isTransitioning ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"} flex flex-col text-left px-2`}>
+            {/* Project Title */}
+            {activeExp.project && (
+              <h4 className="font-sans text-lg lg:text-xl font-bold text-neutral-900 mb-3">
+                {activeExp.project}
+              </h4>
+            )}
+
             {/* Short summary */}
             <p className="font-sans italic text-base lg:text-[18px] text-neutral-700 leading-relaxed mb-4">
               {activeExp.summary}

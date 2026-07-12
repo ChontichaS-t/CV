@@ -198,12 +198,7 @@ export default function Highlights() {
                       {award.title}
                     </h3>
                     
-                    <div className="relative mt-6 flex gap-6">
-                      {/* Vertical Accent Line */}
-                      <div
-                        className={`w-[3px] shrink-0 rounded-full bg-gradient-to-b ${award.accentColor}`}
-                      />
-                      
+                    <div className="relative mt-6">
                       {/* Points */}
                       <div className="space-y-6">
                         {award.points.map((point) => (

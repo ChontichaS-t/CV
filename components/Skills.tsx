@@ -207,6 +207,15 @@ export default function Skills() {
                     {group.skills.slice(5).map(renderSkill)}
                   </ul>
                 </div>
+              ) : group.title === "Frontend" || group.title === "Backend" ? (
+                <div className="grid grid-cols-2 gap-x-6 gap-y-3">
+                  <ul className="space-y-3 font-body-md text-secondary">
+                    {group.skills.slice(0, 3).map(renderSkill)}
+                  </ul>
+                  <ul className="space-y-3 font-body-md text-secondary">
+                    {group.skills.slice(3).map(renderSkill)}
+                  </ul>
+                </div>
               ) : (
                 <ul className="space-y-3 font-body-md text-secondary">
                   {group.skills.map(renderSkill)}

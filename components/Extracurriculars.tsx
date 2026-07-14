@@ -11,6 +11,13 @@ const activities = [
     images: ["/engi/engi1.jpg", "/engi/engi2.jpg", "/engi/engi3.jpg", "/engi/engi4.jpg", "/engi/engi5.jpg"],
   },
   {
+    title: "C CAMP",
+    role: "Co-organizer",
+    description: "Co-organized a programming boot camp and networking retreat in 2025.",
+    tags: ["Bootcamp", "Networking", "Co-organization", "Event Ops"],
+    images: ["/cc/cc1.jpg", "/cc/cc2.jpg", "/cc/cc3.jpg", "/cc/cc4.jpg"],
+  },
+  {
     title: "ENGiRun67",
     role: "Register & Running Team",
     description: "Managed registration and race operations in 2024.",
@@ -265,13 +272,12 @@ export default function Extracurriculars() {
           {/* Bento Grid layout with overlay text */}
           <div className="grid grid-cols-1 md:grid-cols-5 gap-1 md:gap-1.5">
             {activities.map((activity, index) => {
-              const isWide = index === 0 || index === 3;
-              const isFull = index === 4;
+              const isWide = index === 0 || index === 3 || index === 4;
               return (
                 <article
                   key={activity.title}
                   className={`group relative flex flex-col overflow-hidden bg-black transition-all duration-500 hover:shadow-2xl hover:-translate-y-1 h-[380px] sm:h-[420px] ${
-                    isFull ? "md:col-span-5" : isWide ? "md:col-span-3" : "md:col-span-2"
+                    isWide ? "md:col-span-3" : "md:col-span-2"
                   }`}
                 >
                   {/* Image Slider Area (occupies full card background) */}

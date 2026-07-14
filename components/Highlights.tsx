@@ -200,24 +200,24 @@ export default function Highlights() {
                       isEven ? "order-2 lg:pl-8" : "order-2 lg:order-1 lg:pr-8"
                     }`}
                   >
-                    <h3 className="font-headline-lg text-[26px] md:text-[32px] font-bold text-primary leading-tight">
+                    <h3 className="text-xl md:text-2xl font-bold text-primary leading-tight">
                       {award.title}
                     </h3>
                     {award.subtitle && (
-                      <p className="mt-2 text-base font-semibold text-orange-500">
+                      <p className="mt-1.5 text-sm md:text-base font-semibold text-orange-500">
                         {award.subtitle}
                       </p>
                     )}
                     
                     <div className="relative mt-6">
                       {/* Points */}
-                      <div className="space-y-6">
+                      <div className="space-y-5">
                         {award.points.map((point) => (
                           <div key={point.title}>
-                            <h4 className="font-semibold text-[17px] md:text-[18px] text-primary">
+                            <h4 className="font-semibold text-base text-primary">
                               {point.title}
                             </h4>
-                            <p className="mt-1 text-sm md:text-body-md text-secondary leading-relaxed">
+                            <p className="mt-1 text-sm text-secondary leading-relaxed">
                               {point.desc}
                             </p>
                           </div>

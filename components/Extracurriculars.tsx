@@ -11,6 +11,13 @@ const activities = [
     images: ["/engi/engi1.jpg", "/engi/engi2.jpg", "/engi/engi3.jpg", "/engi/engi4.jpg", "/engi/engi5.jpg"],
   },
   {
+    title: "ENGiRun67",
+    role: "Register & Running Team",
+    description: "Managed registration and race operations in 2024.",
+    tags: ["Registration", "Operations", "Event Coordination", "Sports Events"],
+    images: ["/engi2/engi21.jpg", "/engi2/engi22.jpg"],
+  },
+  {
     title: "Battle of AI",
     role: "Concept & Operations Organizer",
     description: "Co-conceptualized the event theme, designed game mechanics, and provided key operational support to ensure a seamless event execution.",
@@ -260,11 +267,12 @@ export default function Extracurriculars() {
           <div className="grid grid-cols-1 md:grid-cols-5 gap-1 md:gap-1.5">
             {activities.map((activity, index) => {
               const isWide = index === 0 || index === 3;
+              const isFull = index === 4;
               return (
                 <article
                   key={activity.title}
                   className={`group relative flex flex-col overflow-hidden bg-black transition-all duration-500 hover:shadow-2xl hover:-translate-y-1 h-[380px] sm:h-[420px] ${
-                    isWide ? "md:col-span-3" : "md:col-span-2"
+                    isFull ? "md:col-span-5" : isWide ? "md:col-span-3" : "md:col-span-2"
                   }`}
                 >
                   {/* Image Slider Area (occupies full card background) */}

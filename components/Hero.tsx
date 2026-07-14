@@ -65,11 +65,34 @@ export default function Hero() {
         <div className="mx-auto w-full max-w-container-max px-gutter h-full relative">
           <div className="absolute right-gutter bottom-0 top-0 flex justify-end items-end">
             <div className="relative h-[106%] w-auto max-h-[680px] flex items-end">
+              {/* Glow and Pattern Backgrounds */}
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] rounded-full bg-orange-500/55 blur-[75px] -z-10 pointer-events-none select-none" />
+
+              {/* Decorative Tech Marks */}
+              <div className="absolute top-[12%] left-[10%] opacity-95 text-orange-500 text-lg select-none font-mono font-black pointer-events-none animate-pulse">+</div>
+              <div className="absolute bottom-[28%] right-[5%] opacity-95 text-orange-500 text-xl select-none font-mono font-black pointer-events-none animate-pulse" style={{ animationDelay: "1s" }}>×</div>
+              <div className="absolute top-[55%] -left-[8%] opacity-95 text-orange-500 text-2xl select-none font-mono font-black pointer-events-none animate-pulse" style={{ animationDelay: "2s" }}>+</div>
+
               <img
                 alt="Full-body portrait of Chonticha"
-                className="h-full w-auto object-contain filter drop-shadow-[-16px_8px_30px_rgba(0,0,0,0.06)]"
+                className="h-full w-auto object-contain filter drop-shadow-[-16px_8px_30px_rgba(0,0,0,0.06)] relative z-10"
                 src="/tong2.png"
               />
+
+              {/* Floating Decorative Elements from /ele */}
+              <div className="absolute top-[6%] -left-[10%] z-20 animate-float-2 pointer-events-none select-none">
+                <img src="/ele/ele1 (1).png" alt="decor-1" className="w-14 h-14 object-contain opacity-80 transform rotate-12" />
+              </div>
+              <div className="absolute top-[16%] -right-[8%] z-20 animate-float-3 pointer-events-none select-none">
+                <img src="/ele/ele1 (2).png" alt="decor-2" className="w-16 h-16 object-contain opacity-80 transform -rotate-6" />
+              </div>
+              <div className="absolute top-[45%] -left-[26%] z-20 animate-float-1 pointer-events-none select-none">
+                <img src="/ele/ele1 (3).png" alt="decor-3" className="w-16 h-16 object-contain opacity-85 transform rotate-[15deg]" />
+              </div>
+              <div className="absolute bottom-[22%] -right-[10%] z-20 animate-float-2 pointer-events-none select-none">
+                <img src="/ele/ele1 (4).png" alt="decor-4" className="w-16 h-16 object-contain opacity-80 transform -rotate-12" />
+              </div>
+
 
               {/* Card 1: Experience */}
               <div className="absolute top-[20%] -left-[18%] z-30 animate-float-1">
@@ -151,9 +174,28 @@ export default function Hero() {
             animate ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 translate-y-4"
           }`}>
 
+            {/* Glow Background (Mobile) */}
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] h-[220px] rounded-full bg-orange-500/35 blur-[55px] -z-10 pointer-events-none select-none" />
+
+            {/* Decorative Tech Marks (Mobile) */}
+            <div className="absolute top-[5%] left-[8%] opacity-90 text-orange-500 text-[11px] sm:text-xs select-none font-mono font-black pointer-events-none animate-pulse">+</div>
+            <div className="absolute bottom-[35%] right-[2%] opacity-90 text-orange-500 text-xs sm:text-sm select-none font-mono font-black pointer-events-none animate-pulse" style={{ animationDelay: "1s" }}>×</div>
+            <div className="absolute top-[40%] -left-[5%] opacity-90 text-orange-500 text-sm sm:text-base select-none font-mono font-black pointer-events-none animate-pulse" style={{ animationDelay: "2s" }}>+</div>
+
+            {/* Floating Decorative Elements from /ele (Mobile) */}
+            <div className="absolute top-[6%] -right-[8%] z-20 animate-float-3 scale-[0.45] origin-top-right pointer-events-none select-none">
+              <img src="/ele/ele1 (2).png" alt="decor-2-m" className="w-16 h-16 object-contain opacity-80 transform -rotate-6" />
+            </div>
+            <div className="absolute top-[46%] -left-[8%] z-20 animate-float-1 scale-[0.45] origin-left pointer-events-none select-none">
+              <img src="/ele/ele1 (3).png" alt="decor-3-m" className="w-16 h-16 object-contain opacity-85 transform rotate-[15deg]" />
+            </div>
+            <div className="absolute bottom-[15%] -right-[8%] z-20 animate-float-2 scale-[0.45] origin-right pointer-events-none select-none">
+              <img src="/ele/ele1 (4).png" alt="decor-4-m" className="w-16 h-16 object-contain opacity-80 transform -rotate-12" />
+            </div>
+
             <img
               alt="Portrait of Chonticha"
-              className="h-full w-auto object-contain filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.06)] portrait-fade"
+              className="h-full w-auto object-contain filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.06)] portrait-fade relative z-10"
               src="/tong2.png"
             />
 

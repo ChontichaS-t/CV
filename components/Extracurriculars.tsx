@@ -32,7 +32,6 @@ const activities = [
     images: [
       "/congra/congra1.jpg",
       "/congra/congra2.jpg",
-      "/congra/congra3.jpg",
       "/congra/congra4.jpg",
       "/congra/congra5.jpg",
       "/congra/congra6.jpg"

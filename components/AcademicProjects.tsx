@@ -90,9 +90,6 @@ export default function AcademicProjects() {
     <section id="projects" className="mx-auto max-w-container-max px-gutter py-stack-lg border-t border-outline-variant/20">
       <div className="mb-12">
         <h2 className="font-headline-lg text-headline-lg text-primary">Academic Projects</h2>
-        <p className="mt-2 text-body-md text-secondary">
-          Selected systems designed, architected, and developed throughout my university coursework.
-        </p>
       </div>
 
       {/* Responsive Projects Grid */}
@@ -100,37 +97,37 @@ export default function AcademicProjects() {
         {projects.map((project) => (
           <article
             key={project.num}
-            className="group flex flex-col justify-between h-full p-6 rounded-2xl bg-surface-container-low hover:bg-surface-container-lowest hover:shadow-soft transition-all duration-300"
+            className="group flex flex-col justify-between h-full p-6 rounded-none bg-neutral-950 hover:bg-neutral-900 border border-neutral-800/80 hover:shadow-soft transition-all duration-300"
           >
             <div>
               {/* Header: Course & Index */}
-              <div className="flex items-center justify-between gap-4 border-b border-outline-variant/10 pb-4 mb-4">
-                <span className="text-[11px] font-label-md font-semibold uppercase tracking-wider text-secondary">
+              <div className="flex items-center justify-between gap-4 border-b border-neutral-800/80 pb-4 mb-4">
+                <span className="text-[11px] font-label-md font-semibold uppercase tracking-wider text-zinc-400">
                   {project.course}
                 </span>
-                <span className="font-label-md text-label-md font-bold text-secondary opacity-60">
+                <span className="font-label-md text-label-md font-bold text-zinc-500">
                   {project.num}
                 </span>
               </div>
 
               {/* Title & Role */}
-              <h3 className="font-semibold text-headline-md text-primary group-hover:text-primary transition-colors">
+              <h3 className="font-bold text-lg text-white transition-colors leading-snug">
                 {project.title}
               </h3>
-              <p className="text-label-md text-secondary mt-1 mb-4">
-                Role: {project.role}
+              <p className="text-xs font-medium text-orange-400 mt-1 mb-4">
+                {project.role}
               </p>
 
               {/* Summary description */}
-              <p className="text-body-md text-on-surface-variant mb-4 leading-relaxed font-body-md">
+              <p className="text-sm text-zinc-300 mb-4 leading-relaxed">
                 {project.summary}
               </p>
 
               {/* Short highlights list */}
               <ul className="space-y-2 mb-6">
                 {project.highlights.map((highlight, index) => (
-                  <li key={index} className="text-body-md text-on-surface-variant flex items-start gap-2 leading-relaxed font-body-md">
-                    <span className="text-secondary select-none mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-outline-variant/60" />
+                  <li key={index} className="text-sm text-zinc-300 flex items-start gap-2 leading-relaxed">
+                    <span className="text-orange-500/80 select-none mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-orange-500/80" />
                     <span>{highlight}</span>
                   </li>
                 ))}
@@ -138,11 +135,11 @@ export default function AcademicProjects() {
             </div>
 
             {/* Tech pills at footer */}
-            <div className="flex flex-wrap gap-1.5 pt-4 border-t border-outline-variant/10 mt-auto">
+            <div className="flex flex-wrap gap-1.5 pt-4 border-t border-neutral-800/80 mt-auto">
               {project.tech.map((t) => (
                 <span
                   key={t}
-                  className="px-2 py-0.5 text-[10px] font-mono uppercase rounded bg-surface-container text-secondary border border-outline-variant/10"
+                  className="px-2 py-0.5 text-[10px] font-mono uppercase rounded bg-neutral-900 text-zinc-300 border border-neutral-800"
                 >
                   {t}
                 </span>

@@ -138,9 +138,7 @@ export default function Navbar() {
           <div className="flex-1 flex justify-start">
             <a
               href="#top"
-              className={`transition-all duration-300 select-none font-bold uppercase tracking-widest text-[13px] sm:text-[15px] lg:text-[17px] hover:opacity-85 ${
-                isDarkTheme ? "text-white" : "text-primary"
-              }`}
+              className="text-orange-500 transition-all duration-300 select-none font-bold uppercase tracking-widest text-[13px] sm:text-[15px] lg:text-[17px] hover:opacity-85"
             >
               CHONTICHA SUKCHALEE
             </a>

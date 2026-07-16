@@ -176,7 +176,7 @@ export default function Navbar() {
 
               {/* Desktop Contact Dropdown Menu */}
               {isContactOpen && (
-                <div className={`absolute right-0 md:-right-16 lg:-right-32 xl:-right-40 mt-3 w-[280px] rounded-2xl p-2.5 shadow-xl border backdrop-blur-md transition-all duration-300 z-50 flex flex-col gap-1 ${
+                <div className={`absolute right-0 md:-right-16 lg:-right-2 xl:-right-40 mt-3 w-[280px] rounded-2xl p-2.5 shadow-xl border backdrop-blur-md transition-all duration-300 z-50 flex flex-col gap-1 ${
                   isDarkTheme 
                     ? "bg-black/95 text-white border-white/10" 
                     : "bg-white/95 text-primary border-outline-variant/20 shadow-[0_8px_30px_rgba(0,0,0,0.12)]"

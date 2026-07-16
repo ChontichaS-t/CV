@@ -28,7 +28,6 @@ const skillGroups: SkillGroup[] = [
       { name: "TypeScript", logo: "/logo/Language/typescript.svg" },
       { name: "JavaScript", logo: "/logo/Language/javascript.svg" },
       { name: "Go", logo: "/logo/Language/golang.svg" },
-      { name: "C#", logo: "/logo/Language/csharp.svg" },
       { name: "Python", logo: "/logo/Language/python.svg" },
       { name: "Java", logo: "/logo/Language/java.svg" },
       { name: "C", logo: "/logo/Language/c.svg" },
@@ -189,38 +188,19 @@ export default function Skills() {
                 </h3>
               </div>
               
-              {group.title === "Languages" || group.title === "Tools & Networking" ? (
-                <div className="grid grid-cols-2 gap-x-6 gap-y-3">
-                  <ul className="space-y-3 font-body-md text-secondary">
-                    {group.skills.slice(0, 4).map(renderSkill)}
-                  </ul>
-                  <ul className="space-y-3 font-body-md text-secondary">
-                    {group.skills.slice(4).map(renderSkill)}
-                  </ul>
-                </div>
-              ) : group.title === "Database & Devops" ? (
-                <div className="grid grid-cols-2 gap-x-6 gap-y-3">
-                  <ul className="space-y-3 font-body-md text-secondary">
-                    {group.skills.slice(0, 5).map(renderSkill)}
-                  </ul>
-                  <ul className="space-y-3 font-body-md text-secondary">
-                    {group.skills.slice(5).map(renderSkill)}
-                  </ul>
-                </div>
-              ) : group.title === "Frontend" || group.title === "Backend" ? (
-                <div className="grid grid-cols-2 gap-x-6 gap-y-3">
-                  <ul className="space-y-3 font-body-md text-secondary">
-                    {group.skills.slice(0, 3).map(renderSkill)}
-                  </ul>
-                  <ul className="space-y-3 font-body-md text-secondary">
-                    {group.skills.slice(3).map(renderSkill)}
-                  </ul>
-                </div>
-              ) : (
-                <ul className="space-y-3 font-body-md text-secondary">
-                  {group.skills.map(renderSkill)}
-                </ul>
-              )}
+              {(() => {
+                const half = Math.ceil(group.skills.length / 2);
+                return (
+                  <div className="grid grid-cols-2 gap-x-6 gap-y-3">
+                    <ul className="space-y-3 font-body-md text-secondary">
+                      {group.skills.slice(0, half).map(renderSkill)}
+                    </ul>
+                    <ul className="space-y-3 font-body-md text-secondary">
+                      {group.skills.slice(half).map(renderSkill)}
+                    </ul>
+                  </div>
+                );
+              })()}
             </div>
           );
         })}

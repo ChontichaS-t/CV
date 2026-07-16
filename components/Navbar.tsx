@@ -111,7 +111,7 @@ export default function Navbar() {
     <>
       {/* Backdrop overlay */}
       <div
-        className={`fixed inset-0 z-40 bg-black/10 backdrop-blur-[2px] transition-opacity duration-300 md:hidden ${
+        className={`fixed inset-0 z-40 bg-black/10 backdrop-blur-[2px] transition-opacity duration-300 lg:hidden ${
           isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setIsOpen(false)}
@@ -147,7 +147,7 @@ export default function Navbar() {
           </div>
 
           {/* Center: Desktop Navigation */}
-          <nav className="hidden items-center gap-5 lg:gap-8 md:flex">
+          <nav className="hidden items-center gap-5 lg:gap-8 lg:flex">
             {navigation.map((item) => (
               <a
                 key={item.href}
@@ -166,7 +166,7 @@ export default function Navbar() {
           {/* Right: Actions */}
           <div className="flex-1 flex justify-end items-center gap-4">
             {/* Desktop Contact Button */}
-            <div className="hidden md:block relative contact-dropdown-container">
+            <div className="hidden lg:block relative contact-dropdown-container">
               <button
                 onClick={() => setIsContactOpen(!isContactOpen)}
                 className="rounded-full px-6 py-2.5 font-label-md text-label-md transition-all duration-300 hover:scale-105 bg-orange-500 text-white hover:bg-orange-600 focus:outline-none cursor-pointer"
@@ -236,7 +236,7 @@ export default function Navbar() {
             </div>
 
             {/* Mobile Actions: Hamburger & Contact Button side-by-side */}
-            <div className="flex md:hidden flex-row items-center gap-3.5 z-50">
+            <div className="flex lg:hidden flex-row items-center gap-3.5 z-50">
               {/* Mobile Contact Dropdown Button */}
               <div className="relative contact-dropdown-container">
                 <button
@@ -336,7 +336,7 @@ export default function Navbar() {
 
         {/* Mobile Navigation Dropdown */}
         <div
-          className={`grid transition-all duration-300 ease-in-out md:hidden ${
+          className={`grid transition-all duration-300 ease-in-out lg:hidden ${
             isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0 pointer-events-none"
           }`}
         >

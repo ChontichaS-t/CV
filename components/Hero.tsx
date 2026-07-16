@@ -63,8 +63,8 @@ export default function Hero() {
         animate ? "opacity-100 translate-x-0 scale-100" : "opacity-0 translate-x-8 scale-95"
       }`}>
         <div className="mx-auto w-full max-w-container-max px-gutter h-full relative">
-          <div className="absolute right-gutter bottom-0 top-0 flex justify-end items-end">
-            <div className="relative h-[106%] w-auto max-h-[680px] flex items-end">
+          <div className="absolute lg:right-[60px] xl:right-gutter bottom-0 top-0 flex justify-end items-end">
+            <div className="relative h-[106%] w-auto lg:max-h-[620px] xl:max-h-[680px] flex items-end">
               {/* Glow and Pattern Backgrounds */}
               <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] rounded-full bg-orange-500/55 blur-[75px] -z-10 pointer-events-none select-none" />
 
@@ -79,23 +79,9 @@ export default function Hero() {
                 src="/tong2.png"
               />
 
-              {/* Floating Decorative Elements from /ele */}
-              <div className="absolute top-[6%] -left-[10%] z-20 animate-float-2 pointer-events-none select-none">
-                <img src="/ele/ele1 (1).png" alt="decor-1" className="w-14 h-14 object-contain opacity-80 transform rotate-12" />
-              </div>
-              <div className="absolute top-[16%] -right-[8%] z-20 animate-float-3 pointer-events-none select-none">
-                <img src="/ele/ele1 (2).png" alt="decor-2" className="w-16 h-16 object-contain opacity-80 transform -rotate-6" />
-              </div>
-              <div className="absolute top-[45%] -left-[26%] z-20 animate-float-1 pointer-events-none select-none">
-                <img src="/ele/ele1 (3).png" alt="decor-3" className="w-16 h-16 object-contain opacity-85 transform rotate-[15deg]" />
-              </div>
-              <div className="absolute bottom-[22%] -right-[10%] z-20 animate-float-2 pointer-events-none select-none">
-                <img src="/ele/ele1 (4).png" alt="decor-4" className="w-16 h-16 object-contain opacity-80 transform -rotate-12" />
-              </div>
-
 
               {/* Card 1: Experience */}
-              <div className="absolute top-[20%] -left-[18%] z-30 animate-float-1">
+              <div className="absolute top-[20%] -left-[10%] xl:-left-[15%] 2xl:-left-[18%] z-30 animate-float-1">
                 <div className="flex flex-row items-center gap-2.5 bg-white/80 backdrop-blur-md border border-orange-500/20 rounded-2xl px-5 py-3.5 shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all duration-300 hover:scale-105 select-none pointer-events-auto">
                   <span className="text-2xl font-bold text-orange-500 leading-none">4</span>
                   <span className="text-xs text-black font-bold font-sans whitespace-nowrap">Work Experience</span>
@@ -103,7 +89,7 @@ export default function Hero() {
               </div>
 
               {/* Card 2: Projects Completed */}
-              <div className="absolute top-[46%] -right-[18%] z-30 animate-float-2">
+              <div className="absolute top-[46%] -right-[12%] xl:-right-[16%] 2xl:-right-[18%] z-30 animate-float-2">
                 <div className="flex flex-row items-center gap-2.5 bg-white/80 backdrop-blur-md border border-orange-500/20 rounded-2xl px-5 py-3.5 shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all duration-300 hover:scale-105 select-none pointer-events-auto">
                   <span className="text-2xl font-bold text-orange-500 leading-none">6</span>
                   <span className="text-xs text-black font-bold font-sans whitespace-nowrap">Projects</span>
@@ -111,7 +97,7 @@ export default function Hero() {
               </div>
 
               {/* Card 3: Awards */}
-              <div className="absolute bottom-[20%] -left-[10%] z-30 animate-float-3">
+              <div className="absolute bottom-[20%] -left-[6%] xl:-left-[8%] 2xl:-left-[10%] z-30 animate-float-3">
                 <div className="flex flex-row items-center gap-2.5 bg-white/80 backdrop-blur-md border border-orange-500/20 rounded-2xl px-5 py-3.5 shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all duration-300 hover:scale-105 select-none pointer-events-auto">
                   <span className="text-2xl font-bold text-orange-500 leading-none">2</span>
                   <span className="text-xs text-black font-bold font-sans whitespace-nowrap">Awards</span>
@@ -147,7 +133,7 @@ export default function Hero() {
                 }`}>
                   Full Stack Developer
                 </p>
-                <p className={`text-secondary text-base lg:text-[18px] leading-relaxed font-sans max-w-[520px] transition-all duration-1000 delay-400 ease-out transform ${
+                <p className={`text-secondary text-base lg:text-[18px] leading-relaxed font-sans lg:max-w-[450px] xl:max-w-[520px] transition-all duration-1000 delay-400 ease-out transform ${
                   animate ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 }`}>
                   A Computer Engineering student who enjoys turning ideas into working products, from front-end to back-end. Looking for an internship to apply what I&apos;ve built in the classroom to real production challenges.
@@ -182,16 +168,6 @@ export default function Hero() {
             <div className="absolute bottom-[35%] right-[2%] opacity-90 text-orange-500 text-xs sm:text-sm select-none font-mono font-black pointer-events-none animate-pulse" style={{ animationDelay: "1s" }}>×</div>
             <div className="absolute top-[40%] -left-[5%] opacity-90 text-orange-500 text-sm sm:text-base select-none font-mono font-black pointer-events-none animate-pulse" style={{ animationDelay: "2s" }}>+</div>
 
-            {/* Floating Decorative Elements from /ele (Mobile) */}
-            <div className="absolute top-[6%] -right-[8%] z-20 animate-float-3 scale-[0.45] origin-top-right pointer-events-none select-none">
-              <img src="/ele/ele1 (2).png" alt="decor-2-m" className="w-16 h-16 object-contain opacity-80 transform -rotate-6" />
-            </div>
-            <div className="absolute top-[46%] -left-[8%] z-20 animate-float-1 scale-[0.45] origin-left pointer-events-none select-none">
-              <img src="/ele/ele1 (3).png" alt="decor-3-m" className="w-16 h-16 object-contain opacity-85 transform rotate-[15deg]" />
-            </div>
-            <div className="absolute bottom-[15%] -right-[8%] z-20 animate-float-2 scale-[0.45] origin-right pointer-events-none select-none">
-              <img src="/ele/ele1 (4).png" alt="decor-4-m" className="w-16 h-16 object-contain opacity-80 transform -rotate-12" />
-            </div>
 
             <img
               alt="Portrait of Chonticha"
